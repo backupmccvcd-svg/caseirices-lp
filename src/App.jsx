@@ -65,6 +65,13 @@ const supportItems = [
   },
 ]
 
+const flavorFilters = [
+  { id: 'all', label: 'Todos' },
+  { id: 'classicos', label: 'Classicos' },
+  { id: 'premium', label: 'Premium' },
+  { id: 'picantes', label: 'Picantes' },
+]
+
 function formatMoney(value) {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -154,6 +161,8 @@ function App() {
   const [boxesPerWeek, setBoxesPerWeek] = useState(12)
   const [unitMargin, setUnitMargin] = useState(8)
   const [firstOrder, setFirstOrder] = useState(3200)
+  const [activeFlavorFilter, setActiveFlavorFilter] = useState('all')
+  const [showAllFlavors, setShowAllFlavors] = useState(false)
   const [instagramFeed, setInstagramFeed] = useState(
     instagramImages.map((image, index) => ({
       id: `fallback-${index}`,
@@ -220,6 +229,15 @@ function App() {
 
     return { monthlyProfit, paybackMonths, annualRoi }
   }, [boxesPerWeek, unitMargin, firstOrder])
+
+  const filteredFlavors = useMemo(() => {
+    if (activeFlavorFilter === 'all') return flavors
+    return flavors.filter((item) => item.group === activeFlavorFilter)
+  }, [activeFlavorFilter])
+
+  const visibleFlavors = useMemo(() => {
+    return showAllFlavors ? filteredFlavors : filteredFlavors.slice(0, 8)
+  }, [filteredFlavors, showAllFlavors])
 
   return (
     <LazyMotion features={domAnimation}>
@@ -358,8 +376,31 @@ function App() {
                 </span>
               </div>
 
+              <div className="mb-5 flex flex-wrap gap-2">
+                {flavorFilters.map((filter) => {
+                  const active = activeFlavorFilter === filter.id
+                  return (
+                    <button
+                      key={filter.id}
+                      type="button"
+                      onClick={() => {
+                        setActiveFlavorFilter(filter.id)
+                        setShowAllFlavors(false)
+                      }}
+                      className={`rounded-[10px] border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition ${
+                        active
+                          ? 'border-brand-red-dark bg-brand-red text-white shadow-[0_8px_20px_rgba(139,0,0,0.24)]'
+                          : 'border-brand-earth/20 bg-white text-brand-earth hover:bg-brand-cream'
+                      }`}
+                    >
+                      {filter.label}
+                    </button>
+                  )
+                })}
+              </div>
+
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                {flavors.map((item, index) => (
+                {visibleFlavors.map((item, index) => (
                   <MotionArticle
                     key={item.name}
                     initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
@@ -395,6 +436,18 @@ function App() {
                   </MotionArticle>
                 ))}
               </div>
+
+              {filteredFlavors.length > 8 ? (
+                <div className="mt-5 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setShowAllFlavors((current) => !current)}
+                    className="rounded-[12px] border border-brand-earth/18 bg-white px-4 py-2 text-sm font-semibold text-brand-wine transition hover:bg-brand-cream"
+                  >
+                    {showAllFlavors ? 'Mostrar menos' : `Ver mais ${filteredFlavors.length - 8} sabores`}
+                  </button>
+                </div>
+              ) : null}
             </div>
           </SectionReveal>
 
