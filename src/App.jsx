@@ -224,7 +224,7 @@ function App() {
   return (
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen bg-brand-cream text-brand-ink antialiased">
-        <header className="sticky top-0 z-40 border-b border-brand-earth/10 bg-brand-cream/88 backdrop-blur-xl">
+        <header className="sticky top-0 z-40 border-b border-brand-earth/20 bg-brand-cream shadow-[0_8px_24px_rgba(42,19,12,0.10)]">
           <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
             <BrandLockup />
             <PrimaryButton href={WHATSAPP_LINK} className="hidden sm:inline-flex">
