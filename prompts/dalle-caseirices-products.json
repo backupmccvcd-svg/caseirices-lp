@@ -1,0 +1,88 @@
+{
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "quality": "high",
+  "style_base": "Square 1:1 premium food product photo on dark rustic wood table, warm studio light from top-left, soft shadow, realistic glass jar centered, premium artisan mood, sharp focus on label and jar texture, no hands, no people, no watermark, no text overlay outside the product label.",
+  "products": [
+    {
+      "name": "Alho Tradicional",
+      "filename": "alho.jpg",
+      "prompt": "Tomato sauce jar flavor garlic. Add fresh garlic bulbs and cloves around the jar. Keep label style clean and readable, premium artisan composition."
+    },
+    {
+      "name": "Pimenta Defumada",
+      "filename": "defumado.jpg",
+      "prompt": "Tomato sauce jar flavor smoked pepper. Add smoked wood slices and red chili peppers around the jar. Keep rustic premium look."
+    },
+    {
+      "name": "Ervas Finas",
+      "filename": "sugo-basilico.jpg",
+      "prompt": "Tomato sauce jar flavor fine herbs. Add basil leaves, thyme and parsley around the jar. Fresh green accents with tomato base."
+    },
+    {
+      "name": "Tomate Seco",
+      "filename": "funghi-secchi.jpg",
+      "prompt": "Tomato sauce jar flavor sun dried tomato. Add sun dried tomato pieces in a small wooden bowl next to the jar."
+    },
+    {
+      "name": "Mostarda Artesanal",
+      "filename": "mostarda-artesanal.jpg",
+      "prompt": "Tomato sauce jar flavor artisanal mustard. Add mustard seeds and a rustic spoon with mustard beside the jar."
+    },
+    {
+      "name": "Barbecue Caseiro",
+      "filename": "barbecue-caseiro.jpg",
+      "prompt": "Tomato sauce jar flavor homemade barbecue. Add charred wood chips and light smoke mood around the jar, subtle barbecue visual cues."
+    },
+    {
+      "name": "Chimichurri",
+      "filename": "chimichurri.jpg",
+      "prompt": "Tomato sauce jar flavor chimichurri. Add chopped parsley, oregano and garlic in a small bowl near the jar."
+    },
+    {
+      "name": "Cebola Caramelizada",
+      "filename": "cebola-caramelizada.jpg",
+      "prompt": "Tomato sauce jar flavor caramelized onion. Add sliced caramelized onions in a small bowl and one whole onion near the jar."
+    },
+    {
+      "name": "Alho Poro",
+      "filename": "alho-poro.jpg",
+      "prompt": "Tomato sauce jar flavor leek and garlic. Add fresh leek stalks and garlic cloves framing the jar."
+    },
+    {
+      "name": "Pimenta Verde",
+      "filename": "arrabiata.jpg",
+      "prompt": "Tomato sauce jar flavor green pepper. Add fresh green chili peppers and tomatoes around the jar."
+    },
+    {
+      "name": "Gengibre Citrus",
+      "filename": "gengibre-citrus.jpg",
+      "prompt": "Tomato sauce jar flavor ginger citrus. Add sliced ginger root and lemon zest in a small bowl near the jar."
+    },
+    {
+      "name": "Mostarda e Mel",
+      "filename": "mostarda-mel.jpg",
+      "prompt": "Tomato sauce jar flavor mustard and honey. Add honey dipper with honey thread and mustard seeds near the jar."
+    },
+    {
+      "name": "Jalapeno",
+      "filename": "jalapeno.jpg",
+      "prompt": "Tomato sauce jar flavor jalapeno. Add sliced jalapeno and whole green jalapenos around the jar."
+    },
+    {
+      "name": "Pesto da Casa",
+      "filename": "assado.jpg",
+      "prompt": "Tomato sauce jar flavor house pesto style. Add basil leaves, olive oil drops and pine nuts in a small bowl near the jar."
+    },
+    {
+      "name": "Curry Suave",
+      "filename": "sugo.jpg",
+      "prompt": "Tomato sauce jar flavor mild curry. Add curry powder in a wooden spoon and turmeric roots around the jar."
+    },
+    {
+      "name": "Defumado Premium",
+      "filename": "azeitona.jpg",
+      "prompt": "Tomato sauce jar flavor premium smoked olive blend. Add green olives and charred wood slices around the jar."
+    }
+  ]
+}
