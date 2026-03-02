@@ -190,12 +190,13 @@ function App() {
           </header>
 
           <main className="relative z-10 pb-28">
-            <SectionReveal className="mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-10 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-10 lg:pb-16 lg:pt-14">
-              <div>
+            <SectionReveal className="mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-10 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:pb-16 lg:pt-14">
+              <div className="relative">
+                <div className="absolute -left-8 -top-8 h-28 w-28 bg-brand-red/20 blur-2xl" />
                 <span className="inline-flex items-center gap-2 border border-brand-green/35 bg-brand-green/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-green">
                   Parceria B2B em Jundiai-SP
                 </span>
-                <h1 className="mt-5 max-w-2xl text-balance font-display text-4xl leading-[1.03] text-brand-wine sm:text-5xl lg:text-6xl">
+                <h1 className="mt-5 max-w-2xl text-balance font-display text-4xl leading-[0.98] text-brand-wine sm:text-5xl lg:text-6xl">
                   Leve o Sabor Artesanal Autentico de Jundiai para sua Prateleira
                 </h1>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-brand-ink/85 sm:text-lg">
@@ -203,19 +204,21 @@ function App() {
                   Caseirices na prateleira = cliente insatisfeito e venda perdida.
                 </p>
 
-                <div className="mt-7 flex flex-wrap gap-3">
+                <div className="mt-7 grid gap-2 sm:grid-cols-3">
                   {[
-                    'Parceria comercial de longo prazo',
-                    'Sem conservantes e com producao propria',
-                    'Suporte de marketing para revendedores',
-                  ].map((item) => (
-                    <span
-                      key={item}
-                      className="inline-flex items-center gap-2 border border-brand-earth/25 bg-white/70 px-3 py-2 text-xs font-medium text-brand-ink/80 backdrop-blur"
+                    ['16 Sabores', 'Sortimento que gira'],
+                    ['100% Natural', 'Sem conservantes'],
+                    ['Desde 2017', 'Marca local premium'],
+                  ].map(([title, subtitle]) => (
+                    <div
+                      key={title}
+                      className="border border-brand-earth/20 bg-white/80 px-3 py-2 backdrop-blur-sm"
                     >
-                      <Sparkles className="h-3.5 w-3.5 text-brand-green" />
-                      {item}
-                    </span>
+                      <p className="text-xs font-extrabold uppercase tracking-[0.09em] text-brand-wine">
+                        {title}
+                      </p>
+                      <p className="mt-1 text-[11px] text-brand-ink/75">{subtitle}</p>
+                    </div>
                   ))}
                 </div>
 
@@ -225,7 +228,7 @@ function App() {
                     target="_blank"
                     rel="noreferrer"
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-                    className="inline-flex w-full items-center justify-center gap-2 border border-brand-red-dark bg-brand-red px-5 py-4 text-center text-sm font-extrabold uppercase tracking-[0.07em] text-white shadow-[0_20px_45px_rgba(139,0,0,0.28)] transition hover:bg-brand-red-dark sm:w-auto"
+                    className="inline-flex w-full items-center justify-center gap-2 border border-brand-red-dark bg-brand-red px-5 py-4 text-center text-sm font-extrabold uppercase tracking-[0.07em] text-white shadow-[0_22px_50px_rgba(139,0,0,0.32)] transition hover:bg-brand-red-dark sm:w-auto"
                   >
                     QUERO TABELA DE ATACADO E CONDICOES DE REVENDA
                     <ArrowRight className="h-4 w-4" />
@@ -234,11 +237,16 @@ function App() {
                     href={INSTAGRAM_LINK}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 border border-brand-earth/25 bg-white/75 px-5 py-4 text-sm font-semibold text-brand-ink transition hover:bg-white sm:w-auto"
+                    className="inline-flex w-full items-center justify-center gap-2 border border-brand-earth/25 bg-white/80 px-5 py-4 text-sm font-semibold text-brand-ink transition hover:bg-white sm:w-auto"
                   >
                     <Instagram className="h-4 w-4 text-brand-green" />
                     Ver Instagram da Marca
                   </a>
+                </div>
+
+                <div className="mt-6 inline-flex items-center gap-2 border border-brand-earth/20 bg-brand-cream/85 px-3 py-2 text-xs font-medium text-brand-ink/85">
+                  <Sparkles className="h-3.5 w-3.5 text-brand-green" />
+                  Nao e molho comum: e produto de vitrine com valor percebido alto.
                 </div>
               </div>
 
@@ -246,29 +254,42 @@ function App() {
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
                 animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? undefined : { duration: 0.65, ease: 'easeOut' }}
-                className="relative overflow-hidden border border-brand-earth/30 bg-[#2f170f] p-2 shadow-[0_30px_65px_rgba(40,18,10,0.42)]"
+                className="relative overflow-hidden border border-brand-earth/28 bg-[#25120c] shadow-[0_35px_70px_rgba(35,14,8,0.5)]"
               >
-                <img
-                  src="/assets/products/real/linha-completa.jpg"
-                  alt="Linha premium de molhos Caseirices"
-                  className="aspect-[4/5] w-full object-cover"
-                  onError={(event) => {
-                    event.currentTarget.onerror = null
-                    event.currentTarget.src = '/assets/brand/hero-production.svg'
-                  }}
-                />
-                <div className="absolute inset-x-2 bottom-2 grid grid-cols-3 gap-2">
-                  <div className="border border-white/20 bg-black/40 p-3 text-center text-white backdrop-blur">
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Sabores</p>
-                    <p className="mt-1 text-xl font-bold">16</p>
+                <div className="relative aspect-[4/5]">
+                  <video
+                    className="h-full w-full object-cover"
+                    autoPlay={!shouldReduceMotion}
+                    muted
+                    loop
+                    playsInline
+                    poster="/assets/products/real/linha-completa.jpg"
+                  >
+                    <source src="/assets/hero/hero-farmer.mp4" type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,6,4,0.78)_0%,rgba(14,6,4,0.34)_40%,rgba(14,6,4,0.15)_100%)]" />
+                  <div className="absolute inset-x-4 top-4 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 border border-white/30 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">
+                      Fazenda Moderna
+                    </span>
+                    <span className="inline-flex items-center gap-1 border border-white/30 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">
+                      <Video className="h-3.5 w-3.5" />
+                      Real Footage
+                    </span>
                   </div>
-                  <div className="border border-white/20 bg-black/40 p-3 text-center text-white backdrop-blur">
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Natural</p>
-                    <p className="mt-1 text-xl font-bold">100%</p>
-                  </div>
-                  <div className="border border-white/20 bg-black/40 p-3 text-center text-white backdrop-blur">
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Desde</p>
-                    <p className="mt-1 text-xl font-bold">2017</p>
+                  <div className="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2">
+                    <div className="border border-white/25 bg-black/35 p-3 text-center text-white backdrop-blur">
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Sabores</p>
+                      <p className="mt-1 text-xl font-bold">16</p>
+                    </div>
+                    <div className="border border-white/25 bg-black/35 p-3 text-center text-white backdrop-blur">
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Natural</p>
+                      <p className="mt-1 text-xl font-bold">100%</p>
+                    </div>
+                    <div className="border border-white/25 bg-black/35 p-3 text-center text-white backdrop-blur">
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/75">Giro</p>
+                      <p className="mt-1 text-xl font-bold">Alto</p>
+                    </div>
                   </div>
                 </div>
               </m.div>
