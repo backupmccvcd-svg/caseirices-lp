@@ -38,67 +38,67 @@ const benefits = [
   {
     icon: BadgePercent,
     title: 'Margem de Lucro Alta',
-    text: 'Posicionamento premium com precificacao forte para elevar rentabilidade por metro linear.',
+    text: 'Posicionamento premium com precificação forte para elevar rentabilidade por metro linear.',
   },
   {
     icon: TrendingUp,
-    title: 'Giro Rapido de Estoque',
-    text: 'Linha autoral com recompra recorrente e alta saida em supermercados e food service.',
+    title: 'Giro Rápido de Estoque',
+    text: 'Linha autoral com recompra recorrente e alta saída em supermercados e food service.',
   },
   {
     icon: Leaf,
     title: 'Qualidade 100% Natural',
-    text: 'Receitas artesanais sem conservantes, com sabor caseiro premium e consistencia de lote.',
+    text: 'Receitas artesanais sem conservantes, com sabor caseiro premium e consistência de lote.',
   },
   {
     icon: Handshake,
     title: 'Suporte Comercial Ativo',
-    text: 'Atendimento proximo, materiais de venda e estrategia para acelerar entrada e sell-out.',
+    text: 'Atendimento próximo, materiais de venda e estratégia para acelerar entrada e sell-out.',
   },
 ]
 
 const supportItems = [
   {
     icon: Store,
-    title: 'Kit PDV de Conversao',
-    text: 'Materiais de gondola e destaque para gerar decisao de compra no ponto de venda.',
+    title: 'Kit PDV de Conversão',
+    text: 'Materiais de gôndola e destaque para gerar decisão de compra no ponto de venda.',
   },
   {
     icon: Megaphone,
-    title: 'Conteudo Pronto',
-    text: 'Fotos e criativos prontos para campanhas locais e promocoes semanais.',
+    title: 'Conteúdo Pronto',
+    text: 'Fotos e criativos prontos para campanhas locais e promoções semanais.',
   },
   {
     icon: PackageCheck,
     title: 'Campanhas Conjuntas',
-    text: 'Acoes coordenadas para ampliar giro, ticket medio e recorrencia.',
+    text: 'Ações coordenadas para ampliar giro, ticket médio e recorrência.',
   },
 ]
 
 const placeholderTestimonials = [
   {
-    business: 'Emporio Serra Verde - Jundiai',
+    business: 'Empório Serra Verde - Jundiaí',
     quote:
       'A linha Caseirices entrou no mix e em 30 dias virou item de recompra. Giro muito acima do esperado para molho premium.',
     person: 'Compras e Curadoria',
   },
   {
-    business: 'Rede Mercado Bom Dia - Regiao',
+    business: 'Rede Mercado Bom Dia - Região',
     quote:
-      'Produto com excelente aceitacao no ponto de venda e margem saudavel. O suporte comercial ajudou no sell-out desde a primeira semana.',
+      'Produto com excelente aceitação no ponto de venda e margem saudável. O suporte comercial ajudou no sell-out desde a primeira semana.',
     person: 'Gerente Comercial',
   },
   {
     business: 'Hotel Fazenda Santa Clara',
     quote:
-      'Padrao de sabor consistente e proposta artesanal real. Hoje faz parte fixa do nosso cafe e do menu executivo.',
-    person: 'Chef Responsavel',
+      'Padrão de sabor consistente e proposta artesanal real. Hoje faz parte fixa do nosso café e do menu executivo.',
+    person: 'Chef Responsável',
   },
 ]
 
 const flavorFilters = [
   { id: 'all', label: 'Todos' },
-  { id: 'classicos', label: 'Classicos' },
+  { id: 'classicos', label: 'Clássicos' },
   { id: 'premium', label: 'Premium' },
   { id: 'picantes', label: 'Picantes' },
 ]
@@ -310,7 +310,7 @@ function App() {
                   transition={shouldReduceMotion ? undefined : { duration: 0.5, delay: 0.16 }}
                   className="mx-auto mt-5 max-w-3xl text-balance font-display text-4xl leading-[0.95] text-white sm:text-5xl lg:text-[4.2rem]"
                 >
-                  Leve o sabor artesanal autêntico de Jundiai para sua prateleira
+                  Leve o sabor artesanal autêntico de Jundiaí para sua prateleira
                 </m.h1>
 
                 <m.p
@@ -319,7 +319,7 @@ function App() {
                   transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.24 }}
                   className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg"
                 >
-                  Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
+                  Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Não ter
                   Caseirices na prateleira = cliente insatisfeito e venda perdida.
                 </m.p>
 
@@ -330,7 +330,7 @@ function App() {
                   className="mt-7 flex flex-wrap justify-center gap-3"
                 >
                   <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
-                    Quero tabela de atacado e condicoes
+                    Quero tabela de atacado e condições
                     <ArrowRight className="h-4 w-4" />
                   </PrimaryButton>
                   <SecondaryButton href={INSTAGRAM_LINK} dark className="w-full sm:w-auto">
@@ -429,12 +429,12 @@ function App() {
                 <div>
                   <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Vitrine de Produtos</h2>
                   <p className="mt-2 max-w-2xl text-sm text-brand-ink/82 sm:text-base">
-                    Nao e catalogo comum: e uma linha pensada para girar rapido e valorizar sua
-                    gondola com linguagem visual premium.
+                    Não é catálogo comum: é uma linha pensada para girar rápido e valorizar sua
+                    gôndola com linguagem visual premium.
                   </p>
                 </div>
                 <span className="rounded-[10px] border border-brand-earth/20 bg-brand-cream px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-earth">
-                  Mix estrategico para revenda
+                  Mix estratégico para revenda
                 </span>
               </div>
 
@@ -517,17 +517,17 @@ function App() {
             <article className="rounded-[26px] border border-brand-earth/16 bg-white/88 p-7 shadow-[0_16px_38px_rgba(55,27,16,0.1)] lg:p-9">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">Por que Caseirices?</p>
               <h2 className="mt-3 font-display text-3xl leading-tight text-brand-wine sm:text-4xl">
-                Confiabilidade de fabrica local com padrao premium
+                Confiabilidade de fábrica local com padrão premium
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-brand-ink/85 sm:text-base">
-                Desde 2017, dois amigos transformaram receitas autorais em uma operacao solida com
-                loja-fabrica propria em Jundiai.
+                Desde 2017, dois amigos transformaram receitas autorais em uma operação sólida com
+                loja-fábrica própria em Jundiaí.
               </p>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {[
-                  { icon: Factory, title: 'Loja-fabrica', text: 'Producao propria e rastreavel' },
-                  { icon: Boxes, title: 'Logistica agil', text: 'Reposicao com previsibilidade' },
+                  { icon: Factory, title: 'Loja-fábrica', text: 'Produção própria e rastreável' },
+                  { icon: Boxes, title: 'Logística ágil', text: 'Reposição com previsibilidade' },
                   { icon: Handshake, title: 'Suporte ativo', text: 'Apoio real ao sell-out' },
                   { icon: BadgePercent, title: 'Margem premium', text: 'Posicionamento de valor' },
                 ].map((item) => {
@@ -562,7 +562,7 @@ function App() {
                     onChange={setBoxesPerWeek}
                   />
                   <RangeControl
-                    label="Margem unitaria media"
+                    label="Margem unitária média"
                     min={4}
                     max={20}
                     step={1}
@@ -571,7 +571,7 @@ function App() {
                     suffix=" R$"
                   />
                   <RangeControl
-                    label="Valor do 1o pedido"
+                    label="Valor do 1º pedido"
                     min={1200}
                     max={14000}
                     step={200}
@@ -606,7 +606,7 @@ function App() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
               <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Materiais de Apoio para Revendedores</h2>
               <p className="mt-2 max-w-3xl text-sm text-brand-ink/82 sm:text-base">
-                Voce recebe estrutura comercial para vender mais desde a primeira semana.
+                Você recebe estrutura comercial para vender mais desde a primeira semana.
               </p>
               <div className="mt-7 grid gap-4 md:grid-cols-3">
                 {supportItems.map((item) => {
@@ -629,7 +629,7 @@ function App() {
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
             <div className="rounded-[24px] border border-brand-earth/16 bg-white/88 p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
               <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">
-                Mercados e emporios que confiam em nosso produto
+                Mercados e empórios que confiam em nosso produto
               </h2>
               <p className="mt-2 text-sm text-brand-ink/82 sm:text-base">
                 Secao pronta para prova social. Abaixo estao depoimentos temporarios enquanto recebemos os reais.
@@ -656,7 +656,7 @@ function App() {
                 </p>
                 <p className="mt-1 text-sm text-brand-ink/85">
                   Me mande 3 falas curtas (nome do estabelecimento + cargo) para substituir estes
-                  depoimentos fakes e publicar a versao final.
+                  depoimentos provisórios e publicar a versão final.
                 </p>
               </div>
             </div>
@@ -668,7 +668,7 @@ function App() {
               <div>
                 <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">Instagram da Marca</h2>
                 <p className="mt-2 text-sm text-brand-ink/80 sm:text-base">
-                  Conteudo real da marca @caseiricesjundiai para fortalecer prova social no PDV.
+                  Conteúdo real da marca @caseiricesjundiai para fortalecer prova social no PDV.
                 </p>
               </div>
               <SecondaryButton href={INSTAGRAM_LINK}>
@@ -760,8 +760,8 @@ function App() {
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-brand-ink/80">
                     {instagramStatus === 'live'
-                      ? 'Feed sincronizado com as ultimas publicacoes da marca.'
-                      : 'Instagram bloqueou a leitura publica; exibindo galeria local oficial para manter prova social ativa.'}
+                      ? 'Feed sincronizado com as últimas publicações da marca.'
+                      : 'Instagram bloqueou a leitura pública; exibindo galeria local oficial para manter prova social ativa.'}
                   </p>
                   <a
                     href={INSTAGRAM_LINK}
@@ -823,7 +823,7 @@ function App() {
                   <h3 className="mt-3 font-display text-3xl leading-tight text-white sm:text-4xl">
                     Caseirices Molhos Artesanais - Loja de Fábrica e Empório Artesanal
                   </h3>
-                  <p className="mt-2 text-sm text-brand-cream/88 sm:text-base">Jundiai - SP</p>
+                  <p className="mt-2 text-sm text-brand-cream/88 sm:text-base">Jundiaí - SP</p>
 
                   <div className="mt-4 inline-flex items-center gap-2 rounded-[12px] border border-white/25 bg-white/10 px-3 py-2">
                     <span className="inline-flex items-center gap-1 text-[#F8D66D]">
@@ -848,7 +848,7 @@ function App() {
                       Site
                     </a>
                     <a
-                      href="https://maps.google.com/?q=Rua+Atilio+Vianello,+409,+Jundiai+-+SP,+13207-130"
+                      href="https://maps.google.com/?q=Rua+Atílio+Vianello,+409,+Jundiaí+-+SP,+13207-130"
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 rounded-[12px] border border-white/24 bg-white/10 px-3 py-2 text-sm font-medium transition hover:bg-white/18"
@@ -879,7 +879,7 @@ function App() {
                   <ul className="space-y-3 text-sm sm:text-base">
                     <li className="inline-flex w-full items-start gap-2">
                       <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
-                      <span>Rua Atilio Vianello, 409 - Vila Vianelo, Jundiai - SP, CEP 13207-130</span>
+                      <span>Rua Atílio Vianello, 409 - Vila Vianelo, Jundiaí - SP, CEP 13207-130</span>
                     </li>
                     <li className="inline-flex w-full items-start gap-2">
                       <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
@@ -934,7 +934,7 @@ function App() {
                 Parceria comercial premium
               </p>
               <PrimaryButton href={WHATSAPP_LINK} className="mt-2 w-full rounded-[12px] border-white/35 bg-brand-red-dark hover:bg-[#6c1010] focus-visible:ring-offset-brand-red">
-                Quero tabela e condicoes
+                Quero tabela e condições
                 <ArrowRight className="h-4 w-4" />
               </PrimaryButton>
             </div>

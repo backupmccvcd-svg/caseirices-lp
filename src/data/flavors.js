@@ -8,14 +8,14 @@ export const flavors = [
   },
   {
     name: 'Pimenta Defumada',
-    profile: 'Picancia equilibrada de alto giro',
+    profile: 'Picância equilibrada de alto giro',
     group: 'picantes',
     image: '/assets/products/real/defumado.jpg',
     fallbackImage: '/assets/products/sabor-02.svg',
   },
   {
     name: 'Ervas Finas',
-    profile: 'Ideal para emporios gourmet',
+    profile: 'Ideal para empórios gourmet',
     group: 'premium',
     image: '/assets/products/real/sugo-basilico.jpg',
     fallbackImage: '/assets/products/sabor-03.svg',
@@ -36,7 +36,7 @@ export const flavors = [
   },
   {
     name: 'Barbecue Caseiro',
-    profile: 'Alto ticket medio em churrasco',
+    profile: 'Alto ticket médio em churrasco',
     group: 'premium',
     image: '/assets/products/real/barbecue-caseiro.jpg',
     fallbackImage: '/assets/products/sabor-06.svg',
@@ -56,7 +56,7 @@ export const flavors = [
     fallbackImage: '/assets/products/sabor-08.svg',
   },
   {
-    name: 'Alho Poro',
+    name: 'Alho-Poró',
     profile: 'Sabor sofisticado para bistrôs',
     group: 'premium',
     image: '/assets/products/real/alho-poro.jpg',
@@ -64,7 +64,7 @@ export const flavors = [
   },
   {
     name: 'Pimenta Verde',
-    profile: 'Picancia fresca para food service',
+    profile: 'Picância fresca para food service',
     group: 'picantes',
     image: '/assets/products/real/arrabiata.jpg',
     fallbackImage: '/assets/products/sabor-10.svg',
@@ -78,13 +78,13 @@ export const flavors = [
   },
   {
     name: 'Mostarda e Mel',
-    profile: 'Campeao em combos de salada',
+    profile: 'Campeão em combos de salada',
     group: 'classicos',
     image: '/assets/products/real/mostarda-mel.jpg',
     fallbackImage: '/assets/products/sabor-12.svg',
   },
   {
-    name: 'Jalapeno',
+    name: 'Jalapeño',
     profile: 'Aumenta o mix para publico jovem',
     group: 'picantes',
     image: '/assets/products/real/jalapeno.jpg',
@@ -99,7 +99,7 @@ export const flavors = [
   },
   {
     name: 'Curry Suave',
-    profile: 'Diferenciacao para lojas especiais',
+    profile: 'Diferenciação para lojas especiais',
     group: 'premium',
     image: '/assets/products/real/sugo.jpg',
     fallbackImage: '/assets/products/sabor-15.svg',
