@@ -65,6 +65,27 @@ const supportItems = [
   },
 ]
 
+const placeholderTestimonials = [
+  {
+    business: 'Emporio Serra Verde - Jundiai',
+    quote:
+      'A linha Caseirices entrou no mix e em 30 dias virou item de recompra. Giro muito acima do esperado para molho premium.',
+    person: 'Compras e Curadoria',
+  },
+  {
+    business: 'Rede Mercado Bom Dia - Regiao',
+    quote:
+      'Produto com excelente aceitacao no ponto de venda e margem saudavel. O suporte comercial ajudou no sell-out desde a primeira semana.',
+    person: 'Gerente Comercial',
+  },
+  {
+    business: 'Hotel Fazenda Santa Clara',
+    quote:
+      'Padrao de sabor consistente e proposta artesanal real. Hoje faz parte fixa do nosso cafe e do menu executivo.',
+    person: 'Chef Responsavel',
+  },
+]
+
 const flavorFilters = [
   { id: 'all', label: 'Todos' },
   { id: 'classicos', label: 'Classicos' },
@@ -523,6 +544,42 @@ function App() {
                     </article>
                   )
                 })}
+              </div>
+            </div>
+          </SectionReveal>
+
+          <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+            <div className="rounded-[24px] border border-brand-earth/16 bg-white/88 p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
+              <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">
+                Mercados e emporios que confiam em nosso produto
+              </h2>
+              <p className="mt-2 text-sm text-brand-ink/82 sm:text-base">
+                Secao pronta para prova social. Abaixo estao depoimentos temporarios enquanto recebemos os reais.
+              </p>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {placeholderTestimonials.map((item) => (
+                  <article
+                    key={item.business}
+                    className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/55 p-4"
+                  >
+                    <p className="text-sm leading-relaxed text-brand-ink/88">"{item.quote}"</p>
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-brand-wine">
+                      {item.person}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-brand-earth">{item.business}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-5 rounded-[14px] border border-dashed border-brand-red/35 bg-brand-red/5 px-4 py-3">
+                <p className="text-sm font-semibold text-brand-wine">
+                  Enviar 3 depoimentos reais:
+                </p>
+                <p className="mt-1 text-sm text-brand-ink/85">
+                  Me mande 3 falas curtas (nome do estabelecimento + cargo) para substituir estes
+                  depoimentos fakes e publicar a versao final.
+                </p>
               </div>
             </div>
           </SectionReveal>
