@@ -269,21 +269,21 @@ function App() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.28),transparent_36%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.22),transparent_34%),linear-gradient(to_bottom,rgba(22,10,8,0.54),rgba(22,10,8,0.78))]" />
             </div>
 
-            <div className="relative z-10 mx-auto grid h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center gap-6 px-4 py-9 sm:px-6 lg:grid-cols-[1.06fr_0.94fr] lg:px-10 lg:py-12">
-              <div className="rounded-[28px] border border-white/24 bg-black/26 p-6 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-8">
+            <div className="relative z-10 mx-auto grid h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center gap-6 px-4 py-9 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-10 lg:py-12">
+              <div className="w-full rounded-[24px] border border-white/24 bg-black/26 p-4 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-5 lg:max-w-[620px]">
                 <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
                   Parceria B2B em Jundiai-SP
                 </span>
 
-                <h1 className="mt-5 max-w-2xl text-balance font-display text-4xl leading-[0.95] text-white sm:text-5xl lg:text-[4.25rem]">
+                <h1 className="mt-4 max-w-xl text-balance font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.5rem] lg:text-[3rem]">
                   Leve o sabor artesanal autentico de Jundiai para sua prateleira
                 </h1>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/92 sm:text-lg">
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/92 sm:text-base">
                   Molhos 100% naturais, 16 sabores, margem premium e giro garantido. Nao ter
                   Caseirices na prateleira = cliente insatisfeito e venda perdida.
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-wrap gap-2.5">
                   <PrimaryButton href={WHATSAPP_LINK} className="w-full sm:w-auto">
                     Quero tabela de atacado e condicoes
                     <ArrowRight className="h-4 w-4" />
