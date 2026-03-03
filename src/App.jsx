@@ -255,7 +255,7 @@ function App() {
                 muted
                 loop
                 playsInline
-                poster="/assets/products/real/linha-completa.jpg"
+                poster="/assets/hero/fundador-caseirices.jpg"
                 aria-hidden="true"
               >
                 <source src="/assets/hero/hero-farmer.mp4" type="video/mp4" />
@@ -297,12 +297,12 @@ function App() {
                   className="pointer-events-none absolute -bottom-8 right-2 hidden w-[185px] overflow-hidden rounded-[16px] border border-white/38 bg-white/16 shadow-[0_18px_36px_rgba(18,8,4,0.36)] backdrop-blur-lg lg:block"
                 >
                   <img
-                    src="/assets/products/real/linha-completa.jpg"
-                    alt="Linha de produtos Caseirices"
+                    src="/assets/hero/fundador-caseirices.jpg"
+                    alt="Fundador da Caseirices"
                     className="h-[130px] w-full object-cover"
                   />
                   <div className="border-t border-white/26 bg-black/38 px-2.5 py-1.5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/92">Linha completa</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/92">Fundador Caseirices</p>
                   </div>
                 </m.div>
               </div>
@@ -310,14 +310,14 @@ function App() {
               <div className="mx-auto w-full max-w-[520px] lg:max-w-none">
                 <div className="overflow-hidden rounded-[26px] border border-white/26 bg-white/12 shadow-[0_24px_58px_rgba(18,7,4,0.34)] backdrop-blur-xl">
                   <div className="flex items-center justify-between border-b border-white/24 px-4 py-3 text-white/90">
-                    <p className="text-xs font-semibold uppercase tracking-[0.13em]">Linha completa Caseirices</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.13em]">Fundador + Linha Caseirices</p>
                     <span className="rounded-[999px] border border-white/32 bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em]">
                       16 sabores
                     </span>
                   </div>
                   <img
-                    src="/assets/products/real/linha-completa.jpg"
-                    alt="Linha completa de molhos artesanais Caseirices"
+                    src="/assets/hero/fundador-caseirices.jpg"
+                    alt="Fundador da Caseirices com a linha de molhos artesanais"
                     className="h-[250px] w-full object-cover sm:h-[300px] lg:h-[330px]"
                   />
                   <div className="grid grid-cols-3 gap-2 border-t border-white/24 bg-black/24 p-3">
