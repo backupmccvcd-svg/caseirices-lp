@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import { SectionReveal } from './components/SectionReveal'
 import { flavors, instagramImages } from './data/flavors'
+import heroVideo from './assets/caseirices-hero video.mp4'
 
 const WHATSAPP_LINK =
   'https://wa.me/5511974884319?text=Olá!+Vi+a+Landing+Page+da+Caseirices+e+gostaria+de+receber+a+tabela+de+preços+para+revenda.'
@@ -306,7 +307,7 @@ function App() {
                 poster="/assets/hero/fundador-dono.png"
                 aria-hidden="true"
               >
-                <source src="/assets/hero/hero-farmer.mp4" type="video/mp4" />
+                <source src={heroVideo} type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.28),transparent_36%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.22),transparent_34%),linear-gradient(to_bottom,rgba(22,10,8,0.54),rgba(22,10,8,0.78))]" />
             </div>
