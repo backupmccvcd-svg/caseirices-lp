@@ -269,7 +269,7 @@ function App() {
           <SectionReveal className="relative overflow-hidden border-b border-brand-earth/14">
             <div className="absolute inset-0">
               <video
-                className="h-full w-full scale-110 object-cover blur-[6px] saturate-[1.14] brightness-[0.42]"
+                className="h-full w-full scale-110 object-cover blur-[4px] saturate-[1.12] brightness-[0.5]"
                 autoPlay={!shouldReduceMotion}
                 muted
                 loop
