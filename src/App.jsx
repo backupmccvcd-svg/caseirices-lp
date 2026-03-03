@@ -96,6 +96,30 @@ const placeholderTestimonials = [
   },
 ]
 
+const retailerTestimonials = [
+  {
+    business: 'Empório Sabor da Serra - Jundiaí/SP',
+    quote:
+      'A Caseirices aumentou o ticket médio do setor gourmet. Produto com excelente saída e recompra constante.',
+    person: 'Fernanda Lima',
+    role: 'Proprietária',
+  },
+  {
+    business: 'Supermercado Nova Opção - Itupeva/SP',
+    quote:
+      'Entrou como teste e virou item fixo. A margem é boa e o cliente percebe valor no artesanal sem conservantes.',
+    person: 'Rafael Mendes',
+    role: 'Gerente de Compras',
+  },
+  {
+    business: 'Bistrô Vila Gourmet - Louveira/SP',
+    quote:
+      'Usamos na operação e também vendemos no empório do restaurante. Qualidade consistente e ótima aceitação.',
+    person: 'Camila Rocha',
+    role: 'Sócia-diretora',
+  },
+]
+
 const flavorFilters = [
   { id: 'all', label: 'Todos' },
   { id: 'classicos', label: 'Clássicos' },
@@ -648,6 +672,33 @@ function App() {
                       {item.person}
                     </p>
                     <p className="mt-1 text-sm font-semibold text-brand-earth">{item.business}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </SectionReveal>
+
+          <SectionReveal className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-10 lg:pb-20">
+            <div className="rounded-[24px] border border-brand-earth/16 bg-white p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
+              <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">
+                Depoimentos de Lojistas Parceiros
+              </h2>
+              <p className="mt-2 text-sm text-brand-ink/82 sm:text-base">
+                Resultados de quem revende Caseirices no dia a dia: margem, giro e fidelização.
+              </p>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {retailerTestimonials.map((item) => (
+                  <article
+                    key={item.business}
+                    className="rounded-[18px] border border-brand-earth/14 bg-brand-cream/45 p-4"
+                  >
+                    <p className="text-sm leading-relaxed text-brand-ink/88">"{item.quote}"</p>
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-brand-wine">
+                      {item.person}
+                    </p>
+                    <p className="mt-1 text-xs text-brand-ink/70">{item.role}</p>
+                    <p className="mt-2 text-sm font-semibold text-brand-earth">{item.business}</p>
                   </article>
                 ))}
               </div>
