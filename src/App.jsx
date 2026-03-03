@@ -338,25 +338,30 @@ function App() {
                     Ver Instagram da Marca
                   </SecondaryButton>
                 </m.div>
-              </div>
-            </div>
 
-            <div className="pointer-events-none absolute inset-x-0 -bottom-7 z-20 flex justify-center">
-              <a
-                href="#quem-somos"
-                className="pointer-events-auto inline-flex flex-col items-center gap-1 rounded-full border border-brand-earth/18 bg-brand-cream/95 px-4 py-2 shadow-[0_12px_24px_rgba(35,12,8,0.15)]"
-                aria-label="Rolar para seção Quem Somos"
-              >
-                <m.span
-                  animate={shouldReduceMotion ? undefined : { y: [0, -3, 0] }}
-                  transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                  className="relative inline-flex h-6 w-6 items-center justify-center"
+                <m.div
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.38 }}
+                  className="mt-6 flex justify-center"
                 >
-                  <span className="h-4 w-4 rounded-full bg-brand-red shadow-[inset_0_-2px_0_rgba(0,0,0,0.2)]" />
-                  <span className="absolute -top-0.5 h-1.5 w-2 rounded-b-full rounded-t-[2px] bg-brand-green" />
-                </m.span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-earth">Role</span>
-              </a>
+                  <a
+                    href="#quem-somos"
+                    className="inline-flex items-center gap-2 rounded-[999px] border border-white/28 bg-white/10 px-3 py-1.5 text-xs font-medium text-white/78 backdrop-blur-md transition hover:bg-white/14 hover:text-white"
+                    aria-label="Rolar para seção Quem Somos"
+                  >
+                    <m.span
+                      animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
+                      transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                      className="relative inline-flex h-4 w-4 items-center justify-center"
+                    >
+                      <span className="h-3 w-3 rounded-full bg-brand-red/85 shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)]" />
+                      <span className="absolute -top-0.5 h-1 w-1.5 rounded-b-full rounded-t-[2px] bg-brand-green/85" />
+                    </m.span>
+                    Deslize
+                  </a>
+                </m.div>
+              </div>
             </div>
           </SectionReveal>
 
