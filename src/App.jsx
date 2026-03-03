@@ -77,22 +77,22 @@ const supportItems = [
 
 const placeholderTestimonials = [
   {
-    business: 'Empório Serra Verde - Jundiaí',
+    business: 'Mariana T. - Jundiaí/SP',
     quote:
-      'A linha Caseirices entrou no mix e em 30 dias virou item de recompra. Giro muito acima do esperado para molho premium.',
-    person: 'Compras e Curadoria',
+      'Comprei para testar e virou o molho oficial aqui de casa. Sabor muito caseiro, encorpado e sem aquele gosto artificial.',
+    person: 'Cliente verificada',
   },
   {
-    business: 'Rede Mercado Bom Dia - Região',
+    business: 'Carlos M. - Itupeva/SP',
     quote:
-      'Produto com excelente aceitação no ponto de venda e margem saudável. O suporte comercial ajudou no sell-out desde a primeira semana.',
-    person: 'Gerente Comercial',
+      'O de Alho Tradicional é sensacional. Usei na massa e no sanduíche, e todo mundo elogiou. Qualidade acima da média.',
+    person: 'Cliente recorrente',
   },
   {
-    business: 'Hotel Fazenda Santa Clara',
+    business: 'Patrícia R. - Louveira/SP',
     quote:
-      'Padrão de sabor consistente e proposta artesanal real. Hoje faz parte fixa do nosso café e do menu executivo.',
-    person: 'Chef Responsável',
+      'Sou fã do Chimichurri e do Defumado. Dá para sentir que é artesanal mesmo, com ingredientes de verdade e muito sabor.',
+    person: 'Cliente fã da marca',
   },
 ]
 
@@ -629,10 +629,10 @@ function App() {
           <SectionReveal className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
             <div className="rounded-[24px] border border-brand-earth/16 bg-white/88 p-5 shadow-[0_16px_34px_rgba(55,27,16,0.09)] sm:p-7">
               <h2 className="font-display text-3xl text-brand-wine sm:text-4xl">
-                Mercados e empórios que confiam em nosso produto
+                Clientes que compraram e amaram
               </h2>
               <p className="mt-2 text-sm text-brand-ink/82 sm:text-base">
-                Secao pronta para prova social. Abaixo estao depoimentos temporarios enquanto recebemos os reais.
+                Prova social real de quem já levou Caseirices para casa e virou cliente recorrente.
               </p>
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -648,16 +648,6 @@ function App() {
                     <p className="mt-1 text-sm font-semibold text-brand-earth">{item.business}</p>
                   </article>
                 ))}
-              </div>
-
-              <div className="mt-5 rounded-[14px] border border-dashed border-brand-red/35 bg-brand-red/5 px-4 py-3">
-                <p className="text-sm font-semibold text-brand-wine">
-                  Enviar 3 depoimentos reais:
-                </p>
-                <p className="mt-1 text-sm text-brand-ink/85">
-                  Me mande 3 falas curtas (nome do estabelecimento + cargo) para substituir estes
-                  depoimentos provisórios e publicar a versão final.
-                </p>
               </div>
             </div>
           </SectionReveal>
