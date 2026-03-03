@@ -300,10 +300,11 @@ function App() {
             <div className="absolute inset-0">
               <video
                 className="h-full w-full scale-105 object-cover blur-[1.5px] saturate-[1.08] brightness-[0.72]"
-                autoPlay={!shouldReduceMotion}
+                autoPlay
                 muted
                 loop
                 playsInline
+                preload="auto"
                 poster="/assets/hero/fundador-dono.png"
                 aria-hidden="true"
               >
@@ -967,7 +968,7 @@ function App() {
           </div>
         </footer>
 
-        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 lg:px-10">
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 hidden px-4 pb-4 sm:px-6 lg:block lg:px-10">
           <div className="mx-auto max-w-7xl">
             <div className="pointer-events-auto mx-auto w-full rounded-[16px] border border-brand-red-dark bg-brand-red px-3 py-3 shadow-[0_18px_40px_rgba(139,0,0,0.38)] lg:ml-auto lg:mr-0 lg:max-w-md">
               <p className="text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white/85">
@@ -980,6 +981,16 @@ function App() {
             </div>
           </div>
         </div>
+
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noreferrer"
+          className="fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 rounded-full border border-white/35 bg-brand-red px-4 py-2.5 text-xs font-bold uppercase tracking-[0.08em] text-white shadow-[0_14px_32px_rgba(139,0,0,0.32)] transition hover:bg-brand-red-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/90 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-red lg:hidden"
+        >
+          Revender
+          <ArrowRight className="h-3.5 w-3.5" />
+        </a>
 
         <a
           href={WHATSAPP_FLOAT_LINK}
