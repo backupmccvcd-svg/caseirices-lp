@@ -292,7 +292,7 @@ function App() {
                   transition={shouldReduceMotion ? undefined : { duration: 0.55 }}
                   src="/assets/brand/caseirices-logo-hero.png"
                   alt="Logo Caseirices sem fundo"
-                  className="mx-auto h-28 w-auto drop-shadow-[0_10px_22px_rgba(0,0,0,0.45)] sm:h-32 lg:h-36"
+                  className="mx-auto h-20 w-auto drop-shadow-[0_10px_22px_rgba(0,0,0,0.45)] sm:h-24 lg:h-28"
                 />
 
                 <m.span
@@ -339,33 +339,31 @@ function App() {
                   </SecondaryButton>
                 </m.div>
 
-                <m.div
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.38 }}
-                  className="mt-6 flex justify-center"
-                >
-                  <a
-                    href="#quem-somos"
-                    className="relative inline-flex h-40 w-14 flex-col items-center justify-end rounded-[999px] border border-white/28 bg-white/10 px-2 pb-3 pt-8 text-xs font-semibold uppercase tracking-[0.08em] text-white/85 backdrop-blur-md transition hover:bg-white/14 hover:text-white"
-                    aria-label="Rolar para seção Quem Somos"
-                  >
-                    <m.span
-                      animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
-                      transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                      className="absolute top-3 inline-flex h-5 w-5 items-center justify-center"
-                    >
-                      <span className="h-4 w-4 rounded-full bg-brand-red/85 shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)]" />
-                      <span className="absolute -top-0.5 h-1.5 w-2 rounded-b-full rounded-t-[2px] bg-brand-green/85" />
-                    </m.span>
-                    <span className="flex flex-col items-center leading-none">
-                      {['d', 'e', 's', 'l', 'i', 'z', 'e'].map((char) => (
-                        <span key={char}>{char}</span>
-                      ))}
-                    </span>
-                  </a>
-                </m.div>
               </div>
+
+              <m.div
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+                animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? undefined : { duration: 0.45, delay: 0.38 }}
+                className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2"
+                aria-hidden="true"
+              >
+                <div className="relative inline-flex h-32 w-12 flex-col items-center justify-end rounded-[999px] border border-white/28 bg-white/10 px-2 pb-2 pt-7 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/85 backdrop-blur-md">
+                  <m.span
+                    animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
+                    transition={shouldReduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute top-2.5 inline-flex h-5 w-5 items-center justify-center"
+                  >
+                    <span className="h-4 w-4 rounded-full bg-brand-red/85 shadow-[inset_0_-1px_0_rgba(0,0,0,0.2)]" />
+                    <span className="absolute -top-0.5 h-1.5 w-2 rounded-b-full rounded-t-[2px] bg-brand-green/85" />
+                  </m.span>
+                  <span className="flex flex-col items-center leading-none">
+                    {['d', 'e', 's', 'l', 'i', 'z', 'e'].map((char) => (
+                      <span key={char}>{char}</span>
+                    ))}
+                  </span>
+                </div>
+              </m.div>
             </div>
           </SectionReveal>
 
