@@ -290,12 +290,12 @@ function App() {
                   initial={shouldReduceMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
                   animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
                   transition={shouldReduceMotion ? undefined : { duration: 0.55, delay: 0.25 }}
-                  className="pointer-events-none absolute -bottom-8 right-2 hidden w-[185px] overflow-hidden rounded-[16px] border border-white/38 bg-white/16 shadow-[0_18px_36px_rgba(18,8,4,0.36)] backdrop-blur-lg lg:block"
+                  className="pointer-events-none absolute -bottom-10 right-0 hidden w-[300px] overflow-hidden rounded-[16px] border border-white/38 bg-[#1f0d09]/72 shadow-[0_18px_36px_rgba(18,8,4,0.36)] backdrop-blur-lg lg:block"
                 >
                   <img
                     src="/assets/hero/fundador-caseirices.jpg"
                     alt="Fundador da Caseirices"
-                    className="h-[130px] w-full object-cover"
+                    className="h-[300px] w-full object-contain"
                   />
                   <div className="border-t border-white/26 bg-black/38 px-2.5 py-1.5">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/92">Fundador Caseirices</p>
