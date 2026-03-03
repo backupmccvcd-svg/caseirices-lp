@@ -263,7 +263,7 @@ function App() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(200,16,46,0.28),transparent_36%),radial-gradient(circle_at_84%_8%,rgba(34,139,34,0.22),transparent_34%),linear-gradient(to_bottom,rgba(22,10,8,0.54),rgba(22,10,8,0.78))]" />
             </div>
 
-            <div className="relative z-10 mx-auto grid h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center gap-6 px-4 py-9 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-10 lg:py-12">
+            <div className="relative z-10 mx-auto flex h-[min(78vh,800px)] min-h-[620px] max-w-7xl items-center px-4 py-9 sm:px-6 lg:px-10 lg:py-12">
               <div className="relative lg:pr-24">
                 <div className="w-full rounded-[24px] border border-white/24 bg-black/26 p-4 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-5 lg:max-w-[620px]">
                   <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
@@ -305,34 +305,6 @@ function App() {
                     <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/92">Fundador Caseirices</p>
                   </div>
                 </m.div>
-              </div>
-
-              <div className="mx-auto w-full max-w-[520px] lg:max-w-none">
-                <div className="overflow-hidden rounded-[26px] border border-white/26 bg-white/12 shadow-[0_24px_58px_rgba(18,7,4,0.34)] backdrop-blur-xl">
-                  <div className="flex items-center justify-between border-b border-white/24 px-4 py-3 text-white/90">
-                    <p className="text-xs font-semibold uppercase tracking-[0.13em]">Fundador + Linha Caseirices</p>
-                    <span className="rounded-[999px] border border-white/32 bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em]">
-                      16 sabores
-                    </span>
-                  </div>
-                  <img
-                    src="/assets/hero/fundador-caseirices.jpg"
-                    alt="Fundador da Caseirices com a linha de molhos artesanais"
-                    className="h-[250px] w-full object-cover sm:h-[300px] lg:h-[330px]"
-                  />
-                  <div className="grid grid-cols-3 gap-2 border-t border-white/24 bg-black/24 p-3">
-                    {[
-                      ['Margem media', '42%'],
-                      ['Sell-out', '3.4x'],
-                      ['Sem conservantes', '100% natural'],
-                    ].map(([label, value]) => (
-                      <div key={label} className="rounded-[12px] border border-white/24 bg-white/10 p-2 text-center">
-                        <p className="text-[10px] uppercase tracking-[0.1em] text-white/72">{label}</p>
-                        <p className="mt-1 text-sm font-bold text-white">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           </SectionReveal>
