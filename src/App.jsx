@@ -267,7 +267,7 @@ function App() {
               <div className="relative lg:pr-24">
                 <div className="w-full rounded-[24px] border border-white/24 bg-black/26 p-4 text-white shadow-[0_24px_56px_rgba(16,6,4,0.34)] backdrop-blur-xl sm:p-5 lg:max-w-[620px]">
                   <span className="inline-flex items-center gap-2 rounded-[10px] border border-white/32 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em]">
-                    Parceria B2B em Jundiai-SP
+                    O verdadeiro molho de tomate caseiro
                   </span>
 
                   <h1 className="mt-4 max-w-xl text-balance font-display text-[2.1rem] leading-[0.94] text-white sm:text-[2.5rem] lg:text-[3rem]">
