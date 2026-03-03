@@ -303,7 +303,7 @@ function App() {
                 muted
                 loop
                 playsInline
-                poster="/assets/hero/fundador-caseirices.jpg"
+                poster="/assets/hero/fundador-dono.png"
                 aria-hidden="true"
               >
                 <source src="/assets/hero/hero-farmer.mp4" type="video/mp4" />
@@ -375,7 +375,7 @@ function App() {
             <div className="grid gap-5 rounded-[24px] border border-brand-earth/16 bg-white/88 p-5 shadow-[0_18px_38px_rgba(55,27,16,0.10)] md:grid-cols-[0.95fr_1.05fr] sm:p-7">
               <div className="overflow-hidden rounded-[18px] border border-brand-earth/14">
                 <img
-                  src="/assets/hero/fundador-caseirices.jpg"
+                  src="/assets/hero/fundador-dono.png"
                   alt="Fundador da Caseirices ao lado da linha de molhos"
                   className="h-full w-full object-cover"
                 />
