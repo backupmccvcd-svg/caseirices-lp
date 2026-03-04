@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -225,54 +225,7 @@ function App() {
       source: 'fallback',
     })),
   )
-  const [instagramStatus, setInstagramStatus] = useState('loading')
-
-  useEffect(() => {
-    let active = true
-
-    async function loadFeed() {
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 4800)
-
-      try {
-        const response = await fetch('/api/instagram-feed?username=caseiricesjundiai&limit=12', {
-          signal: controller.signal,
-        })
-        if (!response.ok) throw new Error('feed-offline')
-        const data = await response.json()
-        if (!active || !data?.ok || !Array.isArray(data.items) || data.items.length === 0) {
-          throw new Error('empty-feed')
-        }
-        setInstagramFeed(
-          data.items.map((item, index) => ({
-            ...item,
-            id: item.id ?? `live-${index}`,
-            source: 'live',
-          })),
-        )
-        setInstagramStatus('live')
-      } catch {
-        if (!active) return
-        setInstagramStatus('fallback')
-        setInstagramFeed(
-          instagramImages.map((image, index) => ({
-            id: `fallback-${index}`,
-            image,
-            permalink: INSTAGRAM_LINK,
-            isVideo: false,
-            source: 'fallback',
-          })),
-        )
-      } finally {
-        clearTimeout(timeoutId)
-      }
-    }
-
-    loadFeed()
-    return () => {
-      active = false
-    }
-  }, [])
+  const [instagramStatus] = useState('fallback')
 
   const metrics = useMemo(() => {
     const unitsPerBox = 12
