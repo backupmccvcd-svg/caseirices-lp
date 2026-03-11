@@ -9,7 +9,7 @@ import {
   useScroll,
   useTransform,
 } from 'framer-motion'
-import { ArrowRight, ChefHat, Leaf, ShoppingBag, Sparkles } from 'lucide-react'
+import { ArrowRight, ChefHat, Clock3, Leaf, ShoppingBag, Sparkles } from 'lucide-react'
 
 const sauceFrames = Object.entries(
   import.meta.glob('../HERO/*.jpg', { eager: true, import: 'default' }),
@@ -145,18 +145,57 @@ const SIGNATURE_INGREDIENTS = [
 const RECIPE_MOMENTS = [
   {
     title: 'Pasta do domingo',
-    text: 'Para quando a mesa pede molho encorpado, perfume de ervas e tempo desacelerado.',
-    image: '/assets/products/real/sugo-basilico.jpg',
+    text: 'Tagliarini cremoso, tomate fresco e manjericão para uma mesa de domingo com cara de trattoria.',
+    image: '/assets/recipes/pasta-domingo.jpg',
+    sauce: 'Sugo Basilico Caseirices',
+    time: '35 min',
+    serves: '2 porções',
+    ingredients: [
+      '250g de massa longa fresca ou seca',
+      '1 xícara de Sugo Basilico Caseirices',
+      'Tomates-cereja, parmesão e folhas de manjericão',
+    ],
+    steps: [
+      'Cozinhe a massa até ficar al dente e reserve meia xícara da água do cozimento.',
+      'Aqueça o molho Caseirices com os tomates-cereja até ganhar brilho e textura mais aveludada.',
+      'Misture a massa, ajuste com a água reservada e finalize com parmesão e manjericão fresco.',
+    ],
   },
   {
     title: 'Bruschetta quente',
-    text: 'Camada generosa, pão tostado e um molho que sustenta a simplicidade com presença.',
-    image: '/assets/products/real/sugo-350.jpg',
+    text: 'Pão tostado, tomate, queijo e ervas em uma entrada quente com personalidade imediata.',
+    image: '/assets/recipes/bruschetta-quente.jpg',
+    sauce: 'Molho Sugo Caseirices',
+    time: '20 min',
+    serves: '6 unidades',
+    ingredients: [
+      '6 fatias de pão rústico',
+      '3 colheres de Molho Sugo Caseirices',
+      'Queijo em lâminas, tomate em rodelas e azeite',
+    ],
+    steps: [
+      'Toste o pão até criar uma crosta firme e dourada.',
+      'Espalhe uma camada fina de molho, acomode o queijo e os tomates por cima.',
+      'Leve ao forno por alguns minutos e finalize com azeite, sal e ervas frescas.',
+    ],
   },
   {
     title: 'Mesa compartilhada',
-    text: 'A linha Caseirices entra em cena como anfitriã: versátil, fotogênica e cheia de memória afetiva.',
-    image: '/assets/products/real/linha-completa.jpg',
+    text: 'Um prato central para dividir, com legumes, carne dourada e molho servindo como amarra da experiência.',
+    image: '/assets/recipes/mesa-compartilhada.jpg',
+    sauce: 'Assado Caseirices',
+    time: '45 min',
+    serves: '4 porções',
+    ingredients: [
+      'Proteína grelhada ou legumes assados para servir ao centro',
+      '1 xícara de molho Assado Caseirices',
+      'Folhas verdes, legumes cozidos e um pão de apoio',
+    ],
+    steps: [
+      'Monte a base da travessa com legumes e folhas para criar volume e contraste.',
+      'Aqueça o molho Assado Caseirices e use como finalização quente sobre a proteína.',
+      'Leve à mesa com pão crocante para compartilhar e servir em camadas.',
+    ],
   },
 ]
 
@@ -287,6 +326,96 @@ function IngredientChip({ progress, item }) {
   )
 }
 
+function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="group block h-[34rem] w-full text-left [perspective:2200px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4a261] focus-visible:ring-offset-2 focus-visible:ring-offset-[#120d0d]"
+    >
+      <MotionDiv
+        animate={shouldReduceMotion ? { rotateY: 0 } : { rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+        className="relative h-full w-full [transform-style:preserve-3d]"
+      >
+        <div className="absolute inset-0 overflow-hidden rounded-[30px] border border-white/10 bg-[#1b1413] shadow-[0_26px_60px_rgba(0,0,0,0.22)] [backface-visibility:hidden]">
+          <div className="relative h-full">
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,7,7,0.08)_0%,rgba(12,7,7,0.18)_28%,rgba(12,7,7,0.82)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Receitas</p>
+              <h3 className="mt-3 font-display text-4xl leading-none text-[#fff3e6]">{recipe.title}</h3>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-white/72">{recipe.text}</p>
+              <div className="mt-5 flex items-center justify-between gap-4 text-[11px] uppercase tracking-[0.22em] text-white/58">
+                <span>{recipe.sauce}</span>
+                <span>{isFlipped ? 'Fechar receita' : 'Clique para abrir'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute inset-0 rounded-[30px] border border-[#f4a261]/18 bg-[radial-gradient(circle_at_top,rgba(244,162,97,0.12),transparent_26%),linear-gradient(180deg,#241614_0%,#120d0d_100%)] p-6 text-[#fff1e2] shadow-[0_30px_80px_rgba(0,0,0,0.28)] [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-7">
+          <div className="flex h-full flex-col">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Receita Caseirices</p>
+                <h3 className="mt-3 font-display text-4xl leading-none text-[#fff6eb]">{recipe.title}</h3>
+              </div>
+              <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/66">
+                virar
+              </span>
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-[0.18em] text-white/70">
+              <span className="rounded-full border border-white/10 bg-white/6 px-3 py-2">{recipe.sauce}</span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3 py-2">
+                <Clock3 className="h-3.5 w-3.5" />
+                {recipe.time}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/6 px-3 py-2">{recipe.serves}</span>
+            </div>
+
+            <div className="mt-6 grid flex-1 gap-5 overflow-hidden lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="rounded-[24px] border border-white/8 bg-white/5 p-5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Ingredientes</p>
+                <div className="mt-4 space-y-3">
+                  {recipe.ingredients.map((ingredient) => (
+                    <p key={ingredient} className="border-t border-white/8 pt-3 text-sm leading-relaxed text-white/78">
+                      {ingredient}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(214,40,40,0.16),rgba(18,13,13,0.18))] p-5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Modo de preparo</p>
+                <div className="mt-4 space-y-4">
+                  {recipe.steps.map((step, index) => (
+                    <div key={step} className="flex gap-3 border-t border-white/8 pt-4">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#D62828] text-xs font-bold text-white">
+                        {index + 1}
+                      </span>
+                      <p className="text-sm leading-relaxed text-white/78">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </MotionDiv>
+    </button>
+  )
+}
+
 function App() {
   const scrollytellingRef = useRef(null)
   const shouldReduceMotion = useReducedMotion()
@@ -299,6 +428,7 @@ function App() {
   const defaultFrame = Math.floor((sauceFrames.length - 1) * 0.58)
   const [activeFrame, setActiveFrame] = useState(shouldReduceMotion ? defaultFrame : SEQUENCE_START_FRAME)
   const [navSolid, setNavSolid] = useState(false)
+  const [activeRecipe, setActiveRecipe] = useState(null)
   const [isPreloading, setIsPreloading] = useState(true)
   const [preloadProgress, setPreloadProgress] = useState(0)
 
@@ -507,7 +637,7 @@ function App() {
 
           <section
             id="ingredientes"
-            className="relative isolate overflow-hidden border-t border-white/8 bg-[#f1e6d8] px-4 py-20 text-[#241614] sm:px-6 lg:px-10"
+            className="relative z-40 isolate overflow-hidden border-t border-white/8 bg-[#f1e6d8] px-4 py-20 text-[#241614] sm:px-6 lg:px-10"
           >
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D62828] to-transparent" />
             <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
@@ -583,7 +713,10 @@ function App() {
             </div>
           </section>
 
-          <section id="receitas" className="bg-[#120d0d] px-4 py-20 sm:px-6 lg:px-10">
+          <section
+            id="receitas"
+            className="relative z-40 -mt-px overflow-hidden bg-[#120d0d] px-4 py-20 sm:px-6 lg:px-10"
+          >
             <div className="mx-auto max-w-7xl">
               <div className="max-w-2xl">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#f4a261]">
@@ -600,29 +733,16 @@ function App() {
 
               <div className="mt-12 grid gap-5 lg:grid-cols-3">
                 {RECIPE_MOMENTS.map((recipe) => (
-                  <article
+                  <RecipeFlipCard
                     key={recipe.title}
-                    className="group overflow-hidden rounded-[30px] border border-white/8 bg-[#1b1413] shadow-[0_26px_60px_rgba(0,0,0,0.22)]"
-                  >
-                    <div className="overflow-hidden">
-                      <img
-                        src={recipe.image}
-                        alt={recipe.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-80 w-full object-cover transition duration-700 group-hover:scale-[1.05]"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#f4a261]">
-                        Receitas
-                      </p>
-                      <h3 className="mt-3 font-display text-4xl leading-none text-[#fff3e6]">
-                        {recipe.title}
-                      </h3>
-                      <p className="mt-4 text-sm leading-relaxed text-white/70">{recipe.text}</p>
-                    </div>
-                  </article>
+                    recipe={recipe}
+                    isFlipped={activeRecipe === recipe.title}
+                    onToggle={() =>
+                      setActiveRecipe((currentRecipe) =>
+                        currentRecipe === recipe.title ? null : recipe.title,
+                      )
+                    }
+                  />
                 ))}
               </div>
             </div>
@@ -630,7 +750,7 @@ function App() {
 
           <section
             id="sobre"
-            className="relative overflow-hidden bg-[linear-gradient(180deg,#f1e6d8_0%,#eadcca_100%)] px-4 py-20 text-[#241614] sm:px-6 lg:px-10"
+            className="relative z-40 overflow-hidden bg-[linear-gradient(180deg,#f1e6d8_0%,#eadcca_100%)] px-4 py-20 text-[#241614] sm:px-6 lg:px-10"
           >
             <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
               <div className="overflow-hidden rounded-[34px] border border-[#3f2722]/10 bg-white/55 shadow-[0_30px_80px_rgba(24,10,8,0.10)]">
@@ -698,7 +818,7 @@ function App() {
 
           <section
             id="comprar"
-            className="relative overflow-hidden bg-[radial-gradient(circle_at_50%_16%,rgba(214,40,40,0.24),transparent_28%),linear-gradient(180deg,#180f0f_0%,#120d0d_100%)] px-4 py-20 sm:px-6 lg:px-10"
+            className="relative z-40 overflow-hidden bg-[radial-gradient(circle_at_50%_16%,rgba(214,40,40,0.24),transparent_28%),linear-gradient(180deg,#180f0f_0%,#120d0d_100%)] px-4 py-20 sm:px-6 lg:px-10"
           >
             <div className="mx-auto grid max-w-7xl gap-10 rounded-[36px] border border-white/8 bg-white/6 p-7 shadow-[0_30px_80px_rgba(0,0,0,0.20)] backdrop-blur-2xl lg:grid-cols-[1.02fr_0.98fr] lg:p-10">
               <div className="flex flex-col justify-center">
