@@ -1,0 +1,271 @@
+{
+  "meta": {
+    "name": "Caseirices Premium Rustic-Glass System",
+    "version": "1.0.0",
+    "brand": "Caseirices Molhos Artesanais",
+    "intent": "B2B lead generation with premium local credibility",
+    "styleKeywords": [
+      "premium artesanal",
+      "rustic chic",
+      "cinematic food brand",
+      "glassmorphism overlays",
+      "high-contrast conversion UI"
+    ]
+  },
+  "creativeDirection": {
+    "northStar": "Design should feel like a premium farm-to-shelf brand film frame, not a SaaS template.",
+    "principles": [
+      "Lead with appetite appeal and product desirability before details.",
+      "Use strong typographic hierarchy with editorial headlines and compact supporting text.",
+      "Balance rustic warmth (earth tones, grain, organic photography) with clean modern structure.",
+      "Use glass layers only where needed for readability and depth over video imagery.",
+      "Every section must include a conversion cue, proof cue, or value cue.",
+      "Avoid playful rounded UI; keep geometry mostly crisp and professional.",
+      "Motion should feel premium and restrained: smooth reveals, subtle hover lift, no gimmicks."
+    ],
+    "antiPatterns": [
+      "Flat white template look",
+      "Over-rounded generic cards",
+      "Low-contrast copy over imagery",
+      "Huge unstructured text blocks",
+      "Over-animated elements that compete with conversion"
+    ]
+  },
+  "layout": {
+    "grid": {
+      "desktop": "max-width 1280px, 12-col rhythm, section container centered",
+      "tablet": "6-col adaptation",
+      "mobile": "single-column stack with priority order: message > CTA > proof"
+    },
+    "sectionDensity": {
+      "hero": "70vh target minimum on desktop; visually complete above the fold",
+      "standardSections": "56-96px vertical padding depending on content density",
+      "footer": "compact but premium, clear legal + contact"
+    },
+    "spacingScalePx": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      64,
+      80,
+      96
+    ],
+    "shapeLanguage": {
+      "cornerRadius": "0-4px default; avoid pill-heavy UI except badges/chips",
+      "borders": "1px visible borders for structure and premium framing",
+      "shadows": "deep cinematic shadows on hero/media; softer depth on content cards"
+    }
+  },
+  "colorSystem": {
+    "base": {
+      "cream": "#FAF4E8",
+      "creamSoft": "#FFF8F0",
+      "ink": "#33190F"
+    },
+    "brand": {
+      "wine": "#8B0000",
+      "red": "#C8102E",
+      "redDark": "#B22222",
+      "green": "#228B22",
+      "earth": "#7A4F2A",
+      "wineDark": "#5A0E0E"
+    },
+    "usageRules": {
+      "headline": "wine on light backgrounds, white on dark/video overlays",
+      "ctaPrimary": "red/redDark with white text",
+      "ctaSecondary": "transparent or light glass with dark text",
+      "successMetrics": "green accents for proof and ROI values",
+      "overMedia": "always add dark gradient + blur-backed containers for readability"
+    },
+    "gradients": {
+      "heroOverlay": "radial warm red + radial green + dark vertical cinematic gradient",
+      "mediaLegibility": "top-to-bottom darkening gradient when text sits over image/video"
+    }
+  },
+  "typography": {
+    "families": {
+      "display": "Playfair Display",
+      "body": "Montserrat",
+      "fallback": "Inter, system sans-serif"
+    },
+    "scale": {
+      "heroH1": "40-68px, tight leading (0.95-1.02)",
+      "sectionH2": "32-44px",
+      "cardTitle": "22-32px",
+      "body": "16-20px",
+      "meta": "10-12px uppercase tracking"
+    },
+    "weights": {
+      "display": [
+        600,
+        700,
+        800
+      ],
+      "body": [
+        400,
+        500,
+        600,
+        700,
+        800
+      ]
+    },
+    "rules": [
+      "Headlines should break intentionally in 2-4 lines on desktop.",
+      "Use uppercase micro-labels for categories, chips, and metric captions.",
+      "Never let long paragraphs exceed ~70 characters line width in major sections."
+    ]
+  },
+  "imageryAndMedia": {
+    "style": "Real product photography, warm wood surfaces, ingredient context, high saturation control",
+    "heroVideo": {
+      "behavior": "autoplay muted loop playsinline",
+      "treatment": "blur + slight scale-up + dark overlays",
+      "fallback": "high-quality product hero image",
+      "contrastRequirement": "text on top must meet strong readability with glass panel and dark mask"
+    },
+    "productCards": {
+      "ratio": "1:1 preferred",
+      "fit": "cover for real photos, contain fallback for packshot placeholders",
+      "hover": "subtle zoom (1.03-1.06) with minimal lift"
+    }
+  },
+  "motion": {
+    "library": "Framer Motion",
+    "philosophy": "calm, purposeful, premium",
+    "patterns": {
+      "sectionReveal": "fade-up 20-32px with 0.35-0.65s duration",
+      "ctaTap": "scale down to ~0.97 on tap",
+      "cardHover": "lift by 4-6px max"
+    },
+    "accessibility": {
+      "reducedMotion": "disable autoplay or heavy motion when prefers-reduced-motion is enabled"
+    }
+  },
+  "components": {
+    "header": {
+      "purpose": "Immediate brand recognition + quick conversion entry",
+      "style": "clean light strip over cinematic hero",
+      "elements": [
+        "brand lockup",
+        "primary action button"
+      ],
+      "notes": [
+        "Keep height compact.",
+        "Button should be prominent but not overpower logo."
+      ]
+    },
+    "hero": {
+      "purpose": "Value proposition, emotional brand framing, first CTA",
+      "style": "full-bleed video background with glass content panel",
+      "requiredElements": [
+        "eyebrow label",
+        "editorial headline",
+        "profit-oriented subheadline",
+        "primary CTA",
+        "secondary CTA",
+        "proof chips/metrics"
+      ],
+      "composition": "Text block anchored left/centered, metrics compact, avoid excessive vertical stack",
+      "height": "desktop target 62-72vh, mobile auto with content-fit"
+    },
+    "ctaPrimary": {
+      "style": "solid tomato red, uppercase bold, white text, hard edge",
+      "size": "44-56px height depending breakpoint",
+      "interaction": "hover darken + tap scale"
+    },
+    "chips": {
+      "style": "micro glass labels with fine border",
+      "text": "short and benefit-driven",
+      "density": "2-4 max in hero row"
+    },
+    "metricTiles": {
+      "style": "compact high-contrast stat tiles",
+      "layout": "3 across desktop, stack on mobile",
+      "content": "label + strong numeric value"
+    },
+    "benefitCards": {
+      "style": "light premium cards with subtle glow accents",
+      "structure": "icon, title, concise text",
+      "tone": "commercial outcomes first"
+    },
+    "productGrid": {
+      "style": "gallery-grade merchandising",
+      "structure": "image-first with concise name/profile",
+      "consistency": "uniform card heights and image handling"
+    },
+    "trustSection": {
+      "style": "clean narrative card + structured proof bullets",
+      "message": "history, local production, logistics confidence"
+    },
+    "roiCalculator": {
+      "style": "high-contrast premium control panel",
+      "controls": "range sliders with custom thumb and visible values",
+      "results": "three metric cards: monthly profit, payback, annual ROI",
+      "ux": "fast, visual, no legacy form aesthetics"
+    },
+    "supportCards": {
+      "style": "operational credibility blocks",
+      "focus": "materials that accelerate sell-out"
+    },
+    "instagramGrid": {
+      "style": "real social proof wall",
+      "ratio": "square",
+      "source": "dynamic public profile fetch with fallback images",
+      "ux": "video badge when item is video"
+    },
+    "stickyCta": {
+      "style": "fixed premium red strip/card",
+      "position": "bottom with safe padding",
+      "priority": "always visible but should not hide essential content"
+    },
+    "footer": {
+      "style": "dark wine block with cream text",
+      "content": "address, CNPJ, WhatsApp, Instagram",
+      "tone": "formal and trustworthy"
+    }
+  },
+  "copyStyle": {
+    "tone": "professional, direct, commercially persuasive",
+    "keywords": [
+      "parceria",
+      "margem alta",
+      "giro rapido",
+      "100% natural",
+      "sem conservantes",
+      "producao propria Jundiai",
+      "sabor caseiro premium"
+    ],
+    "messageHierarchy": [
+      "Business impact headline",
+      "Product credibility",
+      "Operational support",
+      "Clear conversion action"
+    ]
+  },
+  "responsive": {
+    "mobile": {
+      "hero": "keep headline impactful but reduce line count; CTA full-width",
+      "cards": "2-column product grid, 1-column narrative content",
+      "stickyCta": "centered compact card"
+    },
+    "desktop": {
+      "hero": "horizontal composition with controlled height",
+      "content": "clear left-to-right scan path and sectional rhythm"
+    }
+  },
+  "implementationChecklist": [
+    "Use brand tokens consistently; avoid ad-hoc colors.",
+    "Never place text directly over raw media without mask or glass panel.",
+    "Validate hero above-the-fold balance at 1366x768 and 1920x1080.",
+    "Keep primary CTA visible in hero without excessive scrolling.",
+    "Ensure contrast and readability in all glassmorphism layers.",
+    "Preserve reduced-motion accessibility behavior.",
+    "Maintain conversion intent in every major section."
+  ]
+}
