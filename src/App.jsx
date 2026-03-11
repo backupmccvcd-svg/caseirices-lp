@@ -24,7 +24,7 @@ const sampledSauceFrames = sauceFrames.filter(
   (_, index) => index % 3 === 0 || index === sauceFrames.length - 1,
 )
 const mobileSauceFrames = sauceFrames.filter(
-  (_, index) => index === 0 || index % 8 === 0 || index === sauceFrames.length - 1,
+  (_, index) => index === 0 || index % 4 === 0 || index === sauceFrames.length - 1,
 )
 
 const MotionAnchor = m.a

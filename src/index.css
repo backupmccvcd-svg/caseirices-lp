@@ -211,6 +211,41 @@ a {
   }
 }
 
+@media (max-width: 767px) {
+  .tomato-btn {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+  }
+
+  .tomato-btn::before,
+  .tomato-btn::after {
+    content: none;
+  }
+
+  .tomato-btn:hover,
+  .tomato-btn:focus-visible {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .tomato-btn__content {
+    text-shadow: none;
+  }
+
+  .tomato-btn--dark {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 232, 218, 0.22);
+    color: #fff7ef;
+  }
+
+  .tomato-btn--light {
+    background: rgba(243, 231, 214, 0.96);
+    border-color: rgba(92, 43, 31, 0.18);
+    color: #241614;
+  }
+}
+
 ::selection {
   background: rgba(214, 40, 40, 0.34);
   color: #fff7ef;
