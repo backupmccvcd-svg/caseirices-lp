@@ -245,9 +245,9 @@ function ButtonLink({ href, variant = 'primary', liquid = false, children, class
   }
   const liquidClass =
     liquid && variant !== 'light'
-      ? 'tomato-btn dark border-[#ff6b4a]/60 bg-transparent text-white shadow-[0_22px_60px_rgba(118,15,15,0.26)] hover:brightness-100'
+      ? 'tomato-btn tomato-btn--dark border-[#ff6b4a]/45 bg-[rgba(255,255,255,0.03)] text-white shadow-[0_22px_60px_rgba(118,15,15,0.26)] hover:brightness-100'
       : liquid
-        ? 'tomato-btn light border-[#ff6b4a]/60 bg-transparent text-[#241614] shadow-[0_18px_44px_rgba(16,8,6,0.14)] hover:brightness-100'
+        ? 'tomato-btn tomato-btn--light border-[#3f2722]/18 bg-[rgba(243,231,214,0.92)] text-[#241614] shadow-[0_18px_44px_rgba(16,8,6,0.14)] hover:brightness-100'
         : variants[variant]
 
   return (
@@ -256,13 +256,10 @@ function ButtonLink({ href, variant = 'primary', liquid = false, children, class
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noreferrer' : undefined}
       whileTap={shouldReduceMotion ? undefined : { scale: 0.985 }}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-[0.08em] transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${liquidClass} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 py-3 text-sm font-semibold tracking-[0.08em] transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${liquidClass} ${className}`}
     >
       {liquid ? (
-        <>
-          <span>{children}</span>
-          <span className="tomato-liquid" aria-hidden="true" />
-        </>
+        <span className="tomato-btn__content">{children}</span>
       ) : (
         children
       )}

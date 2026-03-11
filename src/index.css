@@ -92,6 +92,7 @@ a {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  backdrop-filter: blur(16px);
   transition:
     transform 0.3s ease,
     color 0.3s ease,
@@ -100,7 +101,7 @@ a {
     background-color 0.3s ease;
 }
 
-.tomato-btn span {
+.tomato-btn__content {
   position: relative;
   z-index: 5;
   display: inline-flex;
@@ -109,64 +110,46 @@ a {
   gap: 0.5rem;
 }
 
-.tomato-liquid {
+.tomato-btn::before {
+  content: '';
   position: absolute;
-  bottom: -92%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #ff5a3a 0%, #e62b1e 45%, #c91515 100%);
-  transition: bottom 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  inset: auto -8% -118%;
+  height: 185%;
+  background:
+    radial-gradient(circle at 20% 26%, rgba(255, 201, 169, 0.26), transparent 18%),
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.14), transparent 14%),
+    linear-gradient(180deg, #ff6a45 0%, #ef3a22 38%, #c91515 100%);
+  border-radius: 42% 58% 40% 60% / 24% 26% 74% 76%;
+  transform: translateY(0) rotate(-2deg);
+  transition:
+    inset 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1;
-  filter: saturate(1.1);
-}
-
-.tomato-liquid::before {
-  content: '';
-  position: absolute;
-  top: -22px;
-  left: -10%;
-  width: 120%;
-  height: 55px;
-  background: #ff5a3a;
-  border-radius: 50%;
-  animation: tomatoWave 3s infinite ease-in-out;
+  filter: saturate(1.08);
   box-shadow:
-    0 0 24px rgba(255, 113, 79, 0.35),
-    inset 0 -8px 18px rgba(140, 16, 11, 0.24);
-}
-
-.tomato-liquid::after {
-  content: '';
-  position: absolute;
-  left: 35%;
-  bottom: 8%;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
-  box-shadow:
-    35px -18px 0 rgba(255, 255, 255, 0.3),
-    70px -35px 0 rgba(255, 255, 255, 0.25),
-    105px -10px 0 rgba(255, 255, 255, 0.35);
-  animation: tomatoBubbles 3.8s infinite ease-in-out;
+    0 18px 42px rgba(201, 21, 21, 0.3),
+    inset 0 -14px 28px rgba(116, 8, 8, 0.34);
 }
 
 .tomato-btn::after {
   content: '';
   position: absolute;
-  inset: 1px;
+  inset: 1px 1px 1px 1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 40%),
+    radial-gradient(circle at 72% 26%, rgba(255, 255, 255, 0.16), transparent 16%);
   opacity: 0;
   transition: opacity 0.35s ease;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 
-.tomato-btn:hover .tomato-liquid,
-.tomato-btn:focus-visible .tomato-liquid {
-  bottom: 0;
+.tomato-btn:hover::before,
+.tomato-btn:focus-visible::before {
+  inset: auto -5% -58%;
+  transform: translateY(0) rotate(0deg);
+  animation: tomatoSurface 2.4s ease-in-out infinite;
 }
 
 .tomato-btn:hover::after,
@@ -179,41 +162,41 @@ a {
   transform: translateY(-1px);
 }
 
-.tomato-btn.dark {
+.tomato-btn--dark {
   color: white;
 }
 
-.tomato-btn.light {
+.tomato-btn--light {
   color: #241614;
 }
 
-@keyframes tomatoWave {
-  0% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(-18px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
+.tomato-btn--light::before {
+  background:
+    radial-gradient(circle at 24% 24%, rgba(255, 225, 202, 0.42), transparent 18%),
+    radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.2), transparent 12%),
+    linear-gradient(180deg, #ff724f 0%, #ef4a29 42%, #cf2418 100%);
 }
 
-@keyframes tomatoBubbles {
+.tomato-btn--light:hover,
+.tomato-btn--light:focus-visible {
+  color: #fff7ef;
+  border-color: rgba(214, 40, 40, 0.45);
+}
+
+@keyframes tomatoSurface {
   0% {
-    transform: translateY(0);
-    opacity: 0.6;
+    border-radius: 42% 58% 40% 60% / 24% 26% 74% 76%;
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
 
   50% {
-    opacity: 1;
+    border-radius: 48% 52% 46% 54% / 30% 24% 76% 70%;
+    transform: translate3d(0, -4px, 0) rotate(1deg);
   }
 
   100% {
-    transform: translateY(-45px);
-    opacity: 0;
+    border-radius: 42% 58% 40% 60% / 24% 26% 74% 76%;
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
 }
 
