@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   LazyMotion,
   domAnimation,
@@ -20,11 +20,14 @@ const sauceFrames = Object.entries(
     return Number(leftMatch?.[1] ?? 0) - Number(rightMatch?.[1] ?? 0)
   })
   .map(([, source]) => source)
+const sampledSauceFrames = sauceFrames.filter(
+  (_, index) => index % 3 === 0 || index === sauceFrames.length - 1,
+)
 
 const MotionAnchor = m.a
 const MotionDiv = m.div
 const MotionImage = m.img
-const SEQUENCE_START_FRAME = Math.min(20, Math.max(sauceFrames.length - 1, 0))
+const SEQUENCE_START_FRAME = 0
 
 const BUY_LINK =
   'https://wa.me/5511974884319?text=Olá!+Quero+conhecer+o+Molho+de+Tomate+Caseirices+e+saber+como+comprar.'
@@ -49,7 +52,7 @@ const STORY_PANELS = [
     range: [0, 0.18],
     actions: [
       { label: 'Conhecer o Molho', href: '#ingredientes', variant: 'primary' },
-      { label: 'Ver Receitas', href: '#receitas', variant: 'secondary' },
+      { label: 'Ver Receitas', href: '#receitas', variant: 'secondary', liquid: true },
     ],
   },
   {
@@ -91,7 +94,7 @@ const STORY_PANELS = [
     range: [0.84, 1],
     actions: [
       { label: 'Comprar Agora', href: BUY_LINK, variant: 'primary' },
-      { label: 'Ver Receitas', href: '#receitas', variant: 'secondary' },
+      { label: 'Ver Receitas', href: '#receitas', variant: 'secondary', liquid: true },
     ],
   },
 ]
@@ -229,7 +232,7 @@ function BrandLogo() {
   )
 }
 
-function ButtonLink({ href, variant = 'primary', children, className = '' }) {
+function ButtonLink({ href, variant = 'primary', liquid = false, children, className = '' }) {
   const shouldReduceMotion = useReducedMotion()
   const isExternal = isExternalLink(href)
   const variants = {
@@ -240,6 +243,12 @@ function ButtonLink({ href, variant = 'primary', children, className = '' }) {
     light:
       'border border-[#3f2722]/12 bg-[#f3e7d6] text-[#241614] shadow-[0_22px_50px_rgba(16,8,6,0.12)] hover:bg-white focus-visible:ring-[#D62828]',
   }
+  const liquidClass =
+    liquid && variant !== 'light'
+      ? 'tomato-btn dark border-[#ff6b4a]/60 bg-transparent text-white shadow-[0_22px_60px_rgba(118,15,15,0.26)] hover:brightness-100'
+      : liquid
+        ? 'tomato-btn light border-[#ff6b4a]/60 bg-transparent text-[#241614] shadow-[0_18px_44px_rgba(16,8,6,0.14)] hover:brightness-100'
+        : variants[variant]
 
   return (
     <MotionAnchor
@@ -247,9 +256,16 @@ function ButtonLink({ href, variant = 'primary', children, className = '' }) {
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noreferrer' : undefined}
       whileTap={shouldReduceMotion ? undefined : { scale: 0.985 }}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-[0.08em] transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${variants[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-[0.08em] transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${liquidClass} ${className}`}
     >
-      {children}
+      {liquid ? (
+        <>
+          <span>{children}</span>
+          <span className="tomato-liquid" aria-hidden="true" />
+        </>
+      ) : (
+        children
+      )}
     </MotionAnchor>
   )
 }
@@ -291,7 +307,12 @@ function StoryPanel({ panel }) {
             }`}
           >
             {panel.actions.map((action) => (
-              <ButtonLink key={action.label} href={action.href} variant={action.variant}>
+              <ButtonLink
+                key={action.label}
+                href={action.href}
+                variant={action.variant}
+                liquid={action.liquid}
+              >
                 {action.label}
                 <ArrowRight className="h-4 w-4" />
               </ButtonLink>
@@ -334,7 +355,7 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
       type="button"
       onClick={onToggle}
       className={`group block w-full text-left [perspective:2200px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4a261] focus-visible:ring-offset-2 focus-visible:ring-offset-[#120d0d] ${
-        isFlipped ? 'h-[42rem] lg:h-[44rem]' : 'h-[34rem] lg:h-[35rem]'
+        isFlipped ? 'h-[44rem] lg:h-[46rem]' : 'h-[34rem] lg:h-[35rem]'
       }`}
     >
       <MotionDiv
@@ -385,23 +406,23 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
               <span className="rounded-full border border-white/10 bg-white/6 px-3 py-2">{recipe.serves}</span>
             </div>
 
-            <div className="mt-5 grid flex-1 gap-4 overflow-hidden lg:grid-cols-[0.92fr_1.08fr]">
-              <div className="min-h-0 rounded-[24px] border border-white/8 bg-white/5 p-4 sm:p-5">
+            <div className="mt-5 grid flex-1 gap-4">
+              <div className="rounded-[24px] border border-white/8 bg-white/5 p-4 sm:p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Ingredientes</p>
-                <div className="mt-4 max-h-[14rem] space-y-3 overflow-y-auto pr-2">
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {recipe.ingredients.map((ingredient) => (
-                    <p key={ingredient} className="border-t border-white/8 pt-3 text-sm leading-relaxed text-white/78">
+                    <p key={ingredient} className="rounded-[18px] border border-white/8 bg-black/10 px-4 py-3 text-sm leading-relaxed text-white/78">
                       {ingredient}
                     </p>
                   ))}
                 </div>
               </div>
 
-              <div className="min-h-0 rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(214,40,40,0.16),rgba(18,13,13,0.18))] p-4 sm:p-5">
+              <div className="rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(214,40,40,0.16),rgba(18,13,13,0.18))] p-4 sm:p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Modo de preparo</p>
-                <div className="mt-4 max-h-[18rem] space-y-4 overflow-y-auto pr-2">
+                <div className="mt-4 space-y-3">
                   {recipe.steps.map((step, index) => (
-                    <div key={step} className="flex gap-3 border-t border-white/8 pt-4">
+                    <div key={step} className="flex gap-3 rounded-[18px] border border-white/8 bg-black/10 px-4 py-4">
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#D62828] text-xs font-bold text-white">
                         {index + 1}
                       </span>
@@ -433,20 +454,43 @@ function App() {
   const [activeRecipe, setActiveRecipe] = useState(null)
   const [isPreloading, setIsPreloading] = useState(true)
   const [preloadProgress, setPreloadProgress] = useState(0)
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined
+
+    const mediaQuery = window.matchMedia('(max-width: 767px)')
+    const handleViewportChange = (event) => {
+      setIsMobileViewport(event.matches)
+    }
+
+    setIsMobileViewport(mediaQuery.matches)
+    mediaQuery.addEventListener('change', handleViewportChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleViewportChange)
+    }
+  }, [])
+
+  const usesStaticHero = isMobileViewport || shouldReduceMotion
+  const activeSequenceFrames = useMemo(
+    () => (usesStaticHero ? [sauceFrames[0]] : sampledSauceFrames),
+    [usesStaticHero],
+  )
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setNavSolid(latest > 40)
   })
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    if (shouldReduceMotion) return
-    const usableFrameCount = Math.max(sauceFrames.length - 1 - SEQUENCE_START_FRAME, 1)
+    if (usesStaticHero) return
+    const usableFrameCount = Math.max(activeSequenceFrames.length - 1 - SEQUENCE_START_FRAME, 1)
     const nextFrame = SEQUENCE_START_FRAME + Math.round(latest * usableFrameCount)
     setActiveFrame((currentFrame) => (currentFrame === nextFrame ? currentFrame : nextFrame))
   })
 
   useEffect(() => {
-    if (typeof window === 'undefined') return undefined
+    if (typeof window === 'undefined' || usesStaticHero) return undefined
 
     const root = document.documentElement
     const body = document.body
@@ -459,13 +503,23 @@ function App() {
       root.style.overflow = previousRootOverflow
       body.style.overflow = previousBodyOverflow
     }
-  }, [])
+  }, [usesStaticHero])
 
   useEffect(() => {
-    if (typeof window === 'undefined' || sauceFrames.length === 0) return undefined
+    if (typeof window === 'undefined') return undefined
+
+    if (usesStaticHero) {
+      setPreloadProgress(100)
+      setIsPreloading(false)
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+      return undefined
+    }
+
+    if (activeSequenceFrames.length === 0) return undefined
 
     let cancelled = false
-    const assetSources = [...new Set([...sauceFrames, ...CRITICAL_IMAGE_SOURCES])]
+    const assetSources = [...new Set([...activeSequenceFrames, ...CRITICAL_IMAGE_SOURCES])]
     const totalAssets = assetSources.length
     let loadedAssets = 0
 
@@ -516,12 +570,12 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [activeSequenceFrames, usesStaticHero])
 
-  const frameSource = sauceFrames[activeFrame] ?? '/assets/products/real/sugo-350.jpg'
+  const frameSource = activeSequenceFrames[activeFrame] ?? activeSequenceFrames[0] ?? '/assets/products/real/sugo-350.jpg'
   const sauceScale = useTransform(scrollYProgress, [0, 0.18, 0.56, 1], [1.02, 1.1, 1.18, 1.26])
   const sauceY = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0, 12, -6, -18])
-  const sauceRotate = useTransform(scrollYProgress, [0, 0.55, 1], [-8, 0, 2])
+  const sauceRotate = useTransform(scrollYProgress, [0, 0.55, 1], [0, 0, 0.5])
   const sauceOpacity = useTransform(scrollYProgress, [0, 0.08, 0.18, 1], [0.55, 0.72, 0.94, 1])
   const sauceBlur = useTransform(scrollYProgress, [0, 0.16, 0.34, 1], [2, 1, 0, 0])
   const sauceFilter = useMotionTemplate`blur(${sauceBlur}px) saturate(1.08) contrast(1.04)`
@@ -532,7 +586,7 @@ function App() {
   return (
     <LazyMotion features={domAnimation}>
       <div className="relative min-h-screen overflow-x-clip bg-[#1A1A1A] text-[#f8e7d4] antialiased">
-        {isPreloading ? (
+        {!usesStaticHero && isPreloading ? (
           <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgba(214,40,40,0.18),transparent_24%),linear-gradient(180deg,#120d0d_0%,#1A1A1A_100%)] px-6">
             <div className="w-full max-w-md rounded-[28px] border border-white/10 bg-[rgba(18,10,10,0.54)] p-8 text-center shadow-[0_30px_80px_rgba(0,0,0,0.28)] backdrop-blur-2xl">
               <img
@@ -599,21 +653,36 @@ function App() {
                 className="absolute left-1/2 top-1/2 h-[72vh] w-[72vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,164,94,0.24)_0%,rgba(214,40,40,0.18)_30%,transparent_68%)] blur-3xl"
               />
 
-              <MotionImage
-                src={frameSource}
-                alt=""
-                aria-hidden="true"
-                decoding="async"
-                fetchPriority="high"
-                style={{
-                  scale: sauceScale,
-                  y: sauceY,
-                  rotate: sauceRotate,
-                  opacity: sauceOpacity,
-                  filter: sauceFilter,
-                }}
-                className="pointer-events-none absolute inset-0 z-10 h-full w-full select-none object-cover object-center drop-shadow-[0_50px_90px_rgba(0,0,0,0.45)]"
-              />
+              {usesStaticHero ? (
+                <MotionDiv
+                  style={{ scale: sauceScale, y: sauceY, opacity: sauceOpacity }}
+                  className="pointer-events-none absolute inset-0 z-10 overflow-hidden"
+                >
+                  <img
+                    src={sauceFrames[0]}
+                    alt=""
+                    aria-hidden="true"
+                    decoding="async"
+                    className="h-full w-full object-cover object-center"
+                  />
+                </MotionDiv>
+              ) : (
+                <MotionImage
+                  src={frameSource}
+                  alt=""
+                  aria-hidden="true"
+                  decoding="async"
+                  fetchPriority="high"
+                  style={{
+                    scale: sauceScale,
+                    y: sauceY,
+                    rotate: sauceRotate,
+                    opacity: sauceOpacity,
+                    filter: sauceFilter,
+                  }}
+                  className="pointer-events-none absolute inset-0 z-10 h-full w-full select-none object-cover object-center drop-shadow-[0_50px_90px_rgba(0,0,0,0.45)]"
+                />
+              )}
 
               <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.10),transparent_14%),radial-gradient(circle_at_56%_50%,rgba(255,214,172,0.18),transparent_20%),radial-gradient(circle_at_34%_72%,rgba(255,255,255,0.04),transparent_22%)] mix-blend-screen" />
               <div className="absolute inset-0 z-20 bg-[linear-gradient(90deg,rgba(10,8,8,0.78)_0%,rgba(10,8,8,0.36)_35%,rgba(10,8,8,0.18)_62%,rgba(10,8,8,0.72)_100%)]" />
@@ -838,7 +907,7 @@ function App() {
                     Comprar Agora
                     <ShoppingBag className="h-4 w-4" />
                   </ButtonLink>
-                  <ButtonLink href="#receitas" variant="secondary">
+                  <ButtonLink href="#receitas" variant="secondary" liquid>
                     Ver Receitas
                     <ArrowRight className="h-4 w-4" />
                   </ButtonLink>
@@ -872,7 +941,7 @@ function App() {
                       A experiência termina como começa: calor, profundidade e um molho com cara de
                       memória boa.
                     </p>
-                    <ButtonLink href={BUY_LINK} variant="light" className="mt-6 w-full">
+                    <ButtonLink href={BUY_LINK} variant="light" liquid className="mt-6 w-full">
                       Falar com a marca
                       <ArrowRight className="h-4 w-4" />
                     </ButtonLink>
