@@ -590,6 +590,7 @@ function RecipeCarousel({
 }) {
   const trackRef = useRef(null)
   const shouldReduceMotion = useReducedMotion()
+  const isDesktopViewport = !isMobileViewport
 
   const syncActiveRecipeIndex = useEffectEvent(() => {
     const track = trackRef.current
@@ -618,6 +619,8 @@ function RecipeCarousel({
   })
 
   useEffect(() => {
+    if (isDesktopViewport) return undefined
+
     const track = trackRef.current
     if (!track) return undefined
 
@@ -636,10 +639,10 @@ function RecipeCarousel({
       track.removeEventListener('scroll', handleScroll)
       window.cancelAnimationFrame(frameRequest)
     }
-  }, [])
+  }, [isDesktopViewport])
 
   useEffect(() => {
-    if (isMobileViewport) return
+    if (!isMobileViewport) return
 
     const track = trackRef.current
     if (!track) return
@@ -654,6 +657,58 @@ function RecipeCarousel({
       behavior: shouldReduceMotion ? 'auto' : 'smooth',
     })
   }, [activeRecipeIndex, isMobileViewport, shouldReduceMotion])
+
+  const getDesktopCardStyle = (index) => {
+    const distance = index - activeRecipeIndex
+    const absDistance = Math.abs(distance)
+    const hidden = absDistance > 2
+
+    if (hidden) {
+      return {
+        opacity: 0,
+        scale: 0.78,
+        x: distance < 0 ? -420 : 420,
+        y: 32,
+        rotateY: distance < 0 ? 28 : -28,
+        pointerEvents: 'none',
+        zIndex: 0,
+      }
+    }
+
+    if (distance === 0) {
+      return {
+        opacity: 1,
+        scale: 1,
+        x: 0,
+        y: 0,
+        rotateY: 0,
+        pointerEvents: 'auto',
+        zIndex: 30,
+      }
+    }
+
+    if (absDistance === 1) {
+      return {
+        opacity: 0.78,
+        scale: 0.9,
+        x: distance < 0 ? -290 : 290,
+        y: 18,
+        rotateY: distance < 0 ? 20 : -20,
+        pointerEvents: 'auto',
+        zIndex: 20,
+      }
+    }
+
+    return {
+      opacity: 0.32,
+      scale: 0.82,
+      x: distance < 0 ? -500 : 500,
+      y: 34,
+      rotateY: distance < 0 ? 26 : -26,
+      pointerEvents: 'none',
+      zIndex: 10,
+    }
+  }
 
   return (
     <div className="mt-12">
@@ -685,35 +740,16 @@ function RecipeCarousel({
         </div>
       </div>
 
-      <div
-        ref={trackRef}
-        className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-6 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] touch-pan-x overscroll-x-contain [&::-webkit-scrollbar]:hidden md:overflow-x-hidden md:px-[8vw] lg:px-[10vw]"
-      >
-        {recipes.map((recipe, index) => {
-          const distance = index - activeRecipeIndex
-          const absDistance = Math.abs(distance)
-          const isActiveCard = absDistance === 0
-
-          return (
-            <MotionDiv
+      {isMobileViewport ? (
+        <div
+          ref={trackRef}
+          className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-6 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] touch-pan-x overscroll-x-contain [&::-webkit-scrollbar]:hidden"
+        >
+          {recipes.map((recipe, index) => (
+            <div
               key={recipe.title}
               data-recipe-card
-              animate={
-                shouldReduceMotion || isMobileViewport
-                  ? { opacity: 1, scale: 1, y: 0, rotateY: 0 }
-                  : {
-                      opacity: isActiveCard ? 1 : absDistance === 1 ? 0.76 : 0.44,
-                      scale: isActiveCard ? 1 : absDistance === 1 ? 0.92 : 0.84,
-                      y: isActiveCard ? 0 : 18,
-                      rotateY: isActiveCard ? 0 : distance < 0 ? 14 : -14,
-                    }
-              }
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                transformOrigin: distance < 0 ? 'right center' : 'left center',
-                willChange: isMobileViewport ? 'auto' : 'transform, opacity',
-              }}
-              className="w-[84vw] max-w-[28rem] shrink-0 snap-center md:w-[26rem] lg:w-[28rem]"
+              className="w-[84vw] max-w-[28rem] shrink-0 snap-center"
             >
               <RecipeFlipCard
                 recipe={recipe}
@@ -725,10 +761,41 @@ function RecipeCarousel({
                   )
                 }}
               />
-            </MotionDiv>
-          )
-        })}
-      </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="relative mt-8 hidden h-[38rem] overflow-hidden md:block">
+          {recipes.map((recipe, index) => {
+            const desktopStyle = getDesktopCardStyle(index)
+
+            return (
+              <MotionDiv
+                key={recipe.title}
+                animate={shouldReduceMotion ? { opacity: 1, scale: 1, x: 0, y: 0, rotateY: 0 } : desktopStyle}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  transformOrigin: index < activeRecipeIndex ? 'right center' : 'left center',
+                  zIndex: desktopStyle.zIndex,
+                  pointerEvents: desktopStyle.pointerEvents,
+                }}
+                className="absolute left-1/2 top-0 w-[28rem] -translate-x-1/2 [perspective:2200px]"
+              >
+                <RecipeFlipCard
+                  recipe={recipe}
+                  isFlipped={activeRecipe === recipe.title}
+                  onToggle={() => {
+                    setActiveRecipeIndex(index)
+                    setActiveRecipe((currentRecipe) =>
+                      currentRecipe === recipe.title ? null : recipe.title,
+                    )
+                  }}
+                />
+              </MotionDiv>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }
