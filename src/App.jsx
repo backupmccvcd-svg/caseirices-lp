@@ -352,7 +352,7 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
       type="button"
       onClick={onToggle}
       className={`group block w-full text-left [perspective:2200px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4a261] focus-visible:ring-offset-2 focus-visible:ring-offset-[#120d0d] ${
-        isFlipped ? 'h-[44rem] lg:h-[46rem]' : 'h-[34rem] lg:h-[35rem]'
+        isFlipped ? 'h-[46rem] lg:h-[52rem]' : 'h-[34rem] lg:h-[35rem]'
       }`}
     >
       <MotionDiv
@@ -783,7 +783,7 @@ function App() {
 
           <section
             id="receitas"
-            className="relative z-40 -mt-px overflow-hidden bg-[#120d0d] px-4 py-20 sm:px-6 lg:px-10"
+            className="relative z-40 -mt-px overflow-visible bg-[#120d0d] px-4 py-20 sm:px-6 lg:px-10"
           >
             <div className="mx-auto max-w-7xl">
               <div className="max-w-2xl">
@@ -799,7 +799,7 @@ function App() {
                 </p>
               </div>
 
-              <div className="mt-12 grid gap-5 lg:grid-cols-3">
+              <div className="mt-12 grid items-start gap-5 lg:grid-cols-3">
                 {RECIPE_MOMENTS.map((recipe) => (
                   <RecipeFlipCard
                     key={recipe.title}
