@@ -509,10 +509,19 @@ function App() {
     }
 
     setIsMobileViewport(mediaQuery.matches)
-    mediaQuery.addEventListener('change', handleViewportChange)
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleViewportChange)
+    } else {
+      mediaQuery.addListener(handleViewportChange)
+    }
 
     return () => {
-      mediaQuery.removeEventListener('change', handleViewportChange)
+      if (typeof mediaQuery.removeEventListener === 'function') {
+        mediaQuery.removeEventListener('change', handleViewportChange)
+      } else {
+        mediaQuery.removeListener(handleViewportChange)
+      }
     }
   }, [])
 
