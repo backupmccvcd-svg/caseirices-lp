@@ -118,7 +118,7 @@ const INGREDIENT_CHIPS = [
     range: [0.24, 0.5],
   },
   {
-    label: 'Azeite extra virgem',
+    label: 'Receita sem óleo',
     accent: '#F4A261',
     className: 'right-[10%] bottom-[20%] md:right-[16%] md:bottom-[30%]',
     range: [0.3, 0.58],
@@ -139,8 +139,8 @@ const SIGNATURE_INGREDIENTS = [
     text: 'Camadas de sabor construídas devagar, com fogo controlado e memória de receita de família.',
   },
   {
-    title: 'Azeite e brilho',
-    text: 'Toque final para entregar textura aveludada, reflexos quentes e finalização elegante.',
+    title: 'Leveza e pureza',
+    text: 'Uma receita sem óleo, com textura limpa, sabor equilibrado e ingredientes que respeitam uma escolha mais saudável.',
   },
 ]
 
@@ -160,7 +160,7 @@ const RECIPE_MOMENTS = [
     ],
     steps: [
       'Cozinhe a massa até ficar al dente e reserve meia xícara da água do cozimento.',
-      'Aqueça o molho Caseirices com os tomates-cereja até ganhar brilho e textura mais aveludada.',
+      'Aqueça o molho Caseirices com os tomates-cereja até ficar envolvente e perfumado.',
       'Misture a massa, ajuste com a água reservada e finalize com parmesão e manjericão fresco.',
     ],
   },
@@ -175,12 +175,12 @@ const RECIPE_MOMENTS = [
     ingredients: [
       '6 fatias de pão rústico',
       '3 colheres de Molho Sugo Caseirices',
-      'Queijo em lâminas, tomate em rodelas e azeite',
+      'Queijo em lâminas, tomate em rodelas e ervas frescas',
     ],
     steps: [
       'Toste o pão até criar uma crosta firme e dourada.',
       'Espalhe uma camada fina de molho, acomode o queijo e os tomates por cima.',
-      'Leve ao forno por alguns minutos e finalize com azeite, sal e ervas frescas.',
+      'Leve ao forno por alguns minutos e finalize com ervas frescas e um toque de sal.',
     ],
   },
   {
@@ -850,7 +850,7 @@ function App() {
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-[#4b312b]/82 sm:text-lg">
                   Cada camada da receita foi pensada para parecer comida de verdade em primeiro
-                  contato: cor quente, brilho sutil, aroma fresco e densidade visual de molho feito
+                  contato: cor quente, aroma fresco, textura limpa e densidade visual de molho feito
                   em casa.
                 </p>
 
@@ -904,9 +904,9 @@ function App() {
 
                 <article className="rounded-[30px] border border-[#3f2722]/10 bg-[linear-gradient(180deg,#D62828_0%,#8D1B1B_100%)] p-6 text-white shadow-[0_24px_60px_rgba(118,15,15,0.28)]">
                   <Sparkles className="h-8 w-8 text-[#ffd8ad]" />
-                  <h3 className="mt-5 font-display text-3xl">Brilho de azeite</h3>
+                  <h3 className="mt-5 font-display text-3xl">Saudável e equilibrado</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/78">
-                    Reflexos quentes e textura viscosa que entregam apetite antes mesmo da primeira colherada.
+                    Uma receita sem óleo, pensada para destacar ingredientes reais, sabor natural e uma sensação mais leve à mesa.
                   </p>
                 </article>
               </div>
@@ -996,7 +996,7 @@ function App() {
                       </p>
                     </div>
                     <p className="mt-3 text-sm leading-relaxed text-[#4b312b]/82">
-                      Um produto com apelo cinematográfico, brilho apetitoso e acabamento digno de campanha premium.
+                      Um produto com apelo cinematográfico, ingredientes naturais e um discurso de saúde que reforça o sabor de verdade.
                     </p>
                   </article>
 
