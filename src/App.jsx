@@ -128,7 +128,7 @@ const INGREDIENT_CHIPS = [
 const SIGNATURE_INGREDIENTS = [
   {
     title: 'Tomate no auge',
-    text: 'Cor profunda, doçura natural e acidez equilibrada para um molho que nasce do fruto, não do extrato.',
+    text: 'Tomate 100% natural, sem corantes, com doçura própria do fruto e acidez equilibrada para um molho que nasce do ingrediente real.',
   },
   {
     title: 'Manjericão fresco',
