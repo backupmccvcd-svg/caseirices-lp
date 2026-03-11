@@ -9,7 +9,16 @@ import {
   useScroll,
   useTransform,
 } from 'framer-motion'
-import { ArrowRight, ChefHat, Clock3, Leaf, ShoppingBag, Sparkles } from 'lucide-react'
+import {
+  ArrowRight,
+  ChefHat,
+  ChevronLeft,
+  ChevronRight,
+  Clock3,
+  Leaf,
+  ShoppingBag,
+  Sparkles,
+} from 'lucide-react'
 
 const sauceFrames = Object.entries(
   import.meta.glob('../HERO/*.jpg', { eager: true, import: 'default' }),
@@ -149,60 +158,147 @@ const SIGNATURE_INGREDIENTS = [
 
 const RECIPE_MOMENTS = [
   {
-    title: 'Pasta do domingo',
-    text: 'Tagliarini cremoso, tomate fresco e manjericão para uma mesa de domingo com cara de trattoria.',
-    image: '/assets/recipes/pasta-domingo.jpg',
-    imagePosition: '58% 42%',
-    sauce: 'Sugo Basilico Caseirices',
+    title: 'Gnocchi Clássico',
+    text: 'Nhoque de batata macio com molho encorpado e o toque aromático do alecrim.',
+    image: '/assets/recipes/gnocchi-classico.jpeg',
+    sauce: 'Molho de Tomate Caseirices',
+    time: '25 min',
+    serves: '2 porções',
+    ingredients: [
+      '500g de gnocchi de batata',
+      '1 xícara de Molho de Tomate Caseirices',
+      'Alecrim fresco e parmesão ralado',
+    ],
+    steps: [
+      'Cozinhe o gnocchi em água salgada até que subam à superfície.',
+      'Aqueça o molho em uma frigideira larga com um ramo de alecrim para aromatizar.',
+      'Envolva a massa no molho quente e finalize com parmesão e um toque de alecrim fresco.',
+    ],
+  },
+  {
+    title: 'Parmegiana de Respeito',
+    text: 'O clássico empanado com o diferencial do sabor defumado artesanal.',
+    image: '/assets/recipes/parmegiana-respeito.jpeg',
+    sauce: 'Molho Defumado Caseirices',
     time: '35 min',
     serves: '2 porções',
     ingredients: [
-      '250g de massa longa fresca ou seca',
-      '1 xícara de Sugo Basilico Caseirices',
-      'Tomates-cereja, parmesão e folhas de manjericão',
+      '2 bifes de filé mignon ou frango empanados',
+      '1 pote de Molho Defumado Caseirices',
+      '200g de muçarela e folhas de manjericão',
     ],
     steps: [
-      'Cozinhe a massa até ficar al dente e reserve meia xícara da água do cozimento.',
-      'Aqueça o molho Caseirices com os tomates-cereja até ficar envolvente e perfumado.',
-      'Misture a massa, ajuste com a água reservada e finalize com parmesão e manjericão fresco.',
+      'Disponha os bifes já fritos em um refratário.',
+      'Cubra generosamente com o Molho Defumado e fatias de muçarela.',
+      'Leve ao forno para gratinar e sirva com arroz branco e batata palha.',
     ],
   },
   {
-    title: 'Bruschetta quente',
-    text: 'Pão tostado, tomate, queijo e ervas em uma entrada quente com personalidade imediata.',
-    image: '/assets/recipes/bruschetta-quente.jpg',
-    imagePosition: '48% 72%',
-    sauce: 'Molho Sugo Caseirices',
+    title: 'Pizza Marguerita Gourmet',
+    text: 'Massa de fermentação natural com a leveza do manjericão fresco e molho Sugo Basilico.',
+    image: '/assets/recipes/pizza-marguerita-gourmet.jpeg',
+    sauce: 'Sugo Basilico Caseirices',
     time: '20 min',
-    serves: '6 unidades',
+    serves: '1 pizza',
     ingredients: [
-      '6 fatias de pão rústico',
-      '3 colheres de Molho Sugo Caseirices',
-      'Queijo em lâminas, tomate em rodelas e ervas frescas',
+      '1 disco de pizza',
+      '1/2 xícara de Sugo Basilico Caseirices',
+      'Muçarela de búfala e manjericão fresco',
     ],
     steps: [
-      'Toste o pão até criar uma crosta firme e dourada.',
-      'Espalhe uma camada fina de molho, acomode o queijo e os tomates por cima.',
-      'Leve ao forno por alguns minutos e finalize com ervas frescas e um toque de sal.',
+      'Espalhe o Sugo Basilico sobre a massa de pizza pré-assada.',
+      'Distribua a muçarela de búfala e leve ao forno em temperatura máxima até dourar a borda.',
+      'Finalize com folhas de manjericão fresco antes de servir.',
     ],
   },
   {
-    title: 'Mesa compartilhada',
-    text: 'Um prato central para dividir, com legumes, carne dourada e molho servindo como amarra da experiência.',
-    image: '/assets/recipes/mesa-compartilhada.jpg',
-    imagePosition: '50% 78%',
-    sauce: 'Assado Caseirices',
-    time: '45 min',
+    title: 'Lasanha da Nonna',
+    text: 'Camadas de sabor com molho sugo artesanal e muito queijo gratinado.',
+    image: '/assets/recipes/lasanha-nonna.jpeg',
+    sauce: 'Molho Sugo Caseirices',
+    time: '40 min',
     serves: '4 porções',
     ingredients: [
-      'Proteína grelhada ou legumes assados para servir ao centro',
-      '1 xícara de molho Assado Caseirices',
-      'Folhas verdes, legumes cozidos e um pão de apoio',
+      'Massa para lasanha',
+      '1 pote de Molho Sugo Caseirices',
+      '300g de carne moída, muçarela e parmesão',
     ],
     steps: [
-      'Monte a base da travessa com legumes e folhas para criar volume e contraste.',
-      'Aqueça o molho Assado Caseirices e use como finalização quente sobre a proteína.',
-      'Leve à mesa com pão crocante para compartilhar e servir em camadas.',
+      'Misture o molho sugo à carne moída já pronta para criar um bolonhesa rico.',
+      'Monte as camadas: molho, massa e queijo, repetindo até o topo.',
+      'Finalize com parmesão ralado e leve ao forno por 20 minutos até gratinar.',
+    ],
+  },
+  {
+    title: 'Pappardelle com Azeitonas',
+    text: 'Massa larga e rústica envolvida em molho de tomate com azeitonas selecionadas.',
+    image: '/assets/recipes/pappardelle-azeitonas.jpeg',
+    sauce: 'Molho de Tomate com Azeitonas Caseirices',
+    time: '25 min',
+    serves: '2 porções',
+    ingredients: [
+      '250g de pappardelle fresco',
+      '1 xícara de Molho de Tomate com Azeitonas Caseirices',
+      'Azeitonas verdes inteiras',
+    ],
+    steps: [
+      'Cozinhe o pappardelle em água abundante com sal até ficar al dente.',
+      'Aqueça o molho Caseirices em fogo baixo para preservar o frescor das azeitonas.',
+      'Misture a massa ao molho e finalize com azeitonas extras por cima.',
+    ],
+  },
+  {
+    title: 'Bruschettas do Chef',
+    text: 'Entradinha rápida e sofisticada com tomates pedaçudos e queijos selecionados.',
+    image: '/assets/recipes/bruschettas-chef.jpeg',
+    sauce: 'Molho Assado Caseirices',
+    time: '18 min',
+    serves: '6 unidades',
+    ingredients: [
+      'Fatias de pão italiano',
+      'Molho Assado (Pedaçudo) Caseirices',
+      'Muçarela de búfala ou queijo coalho',
+    ],
+    steps: [
+      'Leve o pão ao forno para uma leve tostagem.',
+      'Coloque uma porção generosa do Molho Assado sobre cada fatia.',
+      'Adicione o queijo, volte ao forno para derreter e finalize com ervas frescas.',
+    ],
+  },
+  {
+    title: 'Involtini de Abobrinha',
+    text: 'Rolinhos leves de abobrinha recheados com creme de queijo e molho de alho artesanal.',
+    image: '/assets/recipes/involtini-abobrinha.jpeg',
+    sauce: 'Molho de Tomate com Alho Caseirices',
+    time: '20 min',
+    serves: '4 porções',
+    ingredients: [
+      '1 abobrinha em fatias finas',
+      '200g de creme de ricota',
+      'Molho de Tomate com Alho Caseirices e manjericão',
+    ],
+    steps: [
+      'Grelhe as fatias de abobrinha rapidamente, recheie com o creme de queijo e enrole.',
+      'Em um prato, faça uma cama com o Molho com Alho aquecido.',
+      'Disponha os involtinis por cima e decore com muçarela e folhas de manjericão.',
+    ],
+  },
+  {
+    title: 'Penne Arrabbiata',
+    text: 'Para quem gosta de personalidade e um toque de pimenta na medida certa.',
+    image: '/assets/recipes/penne-arrabbiata.jpeg',
+    sauce: 'Molho Arrabbiata Caseirices',
+    time: '20 min',
+    serves: '2 porções',
+    ingredients: [
+      '250g de penne',
+      '1 xícara de Molho Arrabbiata Caseirices',
+      'Pimenta dedo-de-moça fresca e manjericão',
+    ],
+    steps: [
+      'Cozinhe a massa al dente.',
+      'Aqueça o molho Arrabbiata Caseirices em fogo médio.',
+      'Misture a massa ao molho, adicione rodelas de pimenta fresca para decorar e finalize com manjericão.',
     ],
   },
 ]
@@ -484,6 +580,153 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
   )
 }
 
+function RecipeCarousel({
+  recipes,
+  activeRecipe,
+  setActiveRecipe,
+  activeRecipeIndex,
+  setActiveRecipeIndex,
+}) {
+  const trackRef = useRef(null)
+  const shouldReduceMotion = useReducedMotion()
+
+  const syncActiveRecipeIndex = useEffectEvent(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    const cards = [...track.querySelectorAll('[data-recipe-card]')]
+    if (!cards.length) return
+
+    const viewportCenter = track.scrollLeft + track.clientWidth / 2
+    let closestIndex = 0
+    let closestDistance = Number.POSITIVE_INFINITY
+
+    cards.forEach((card, index) => {
+      const cardCenter = card.offsetLeft + card.clientWidth / 2
+      const distance = Math.abs(cardCenter - viewportCenter)
+
+      if (distance < closestDistance) {
+        closestDistance = distance
+        closestIndex = index
+      }
+    })
+
+    setActiveRecipeIndex((currentIndex) =>
+      currentIndex === closestIndex ? currentIndex : closestIndex,
+    )
+  })
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return undefined
+
+    let frameRequest = 0
+    const handleScroll = () => {
+      window.cancelAnimationFrame(frameRequest)
+      frameRequest = window.requestAnimationFrame(() => {
+        syncActiveRecipeIndex()
+      })
+    }
+
+    syncActiveRecipeIndex()
+    track.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      track.removeEventListener('scroll', handleScroll)
+      window.cancelAnimationFrame(frameRequest)
+    }
+  }, [])
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    const cards = [...track.querySelectorAll('[data-recipe-card]')]
+    const activeCard = cards[activeRecipeIndex]
+    if (!activeCard) return
+
+    const nextLeft = activeCard.offsetLeft - (track.clientWidth - activeCard.clientWidth) / 2
+    track.scrollTo({
+      left: Math.max(nextLeft, 0),
+      behavior: shouldReduceMotion ? 'auto' : 'smooth',
+    })
+  }, [activeRecipeIndex, shouldReduceMotion])
+
+  return (
+    <div className="mt-12">
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-xs font-medium uppercase tracking-[0.24em] text-white/44">
+          Arraste para explorar ou use as setas
+        </p>
+        <div className="hidden items-center gap-2 md:flex">
+          <button
+            type="button"
+            onClick={() => setActiveRecipeIndex((currentIndex) => Math.max(currentIndex - 1, 0))}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/6 text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white"
+            aria-label="Receita anterior"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setActiveRecipeIndex((currentIndex) =>
+                Math.min(currentIndex + 1, recipes.length - 1),
+              )
+            }
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/6 text-white/78 transition hover:border-white/18 hover:bg-white/10 hover:text-white"
+            aria-label="Próxima receita"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[calc(50%-42vw)] pb-6 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-[calc(50%-16rem)] lg:px-[calc(50%-18rem)]"
+      >
+        {recipes.map((recipe, index) => {
+          const distance = index - activeRecipeIndex
+          const absDistance = Math.abs(distance)
+          const isActiveCard = absDistance === 0
+
+          return (
+            <MotionDiv
+              key={recipe.title}
+              data-recipe-card
+              animate={
+                shouldReduceMotion
+                  ? { opacity: 1, scale: 1, y: 0, rotateY: 0 }
+                  : {
+                      opacity: isActiveCard ? 1 : absDistance === 1 ? 0.76 : 0.44,
+                      scale: isActiveCard ? 1 : absDistance === 1 ? 0.92 : 0.84,
+                      y: isActiveCard ? 0 : 18,
+                      rotateY: isActiveCard ? 0 : distance < 0 ? 14 : -14,
+                    }
+              }
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              style={{ transformOrigin: distance < 0 ? 'right center' : 'left center' }}
+              className="w-[84vw] max-w-[28rem] shrink-0 snap-center md:w-[30rem]"
+            >
+              <RecipeFlipCard
+                recipe={recipe}
+                isFlipped={activeRecipe === recipe.title}
+                onToggle={() => {
+                  setActiveRecipeIndex(index)
+                  setActiveRecipe((currentRecipe) =>
+                    currentRecipe === recipe.title ? null : recipe.title,
+                  )
+                }}
+              />
+            </MotionDiv>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 function App() {
   const scrollytellingRef = useRef(null)
   const heroCanvasRef = useRef(null)
@@ -499,6 +742,7 @@ function App() {
   const [activeFrame, setActiveFrame] = useState(shouldReduceMotion ? defaultFrame : SEQUENCE_START_FRAME)
   const [navSolid, setNavSolid] = useState(false)
   const [activeRecipe, setActiveRecipe] = useState(null)
+  const [activeRecipeIndex, setActiveRecipeIndex] = useState(0)
   const [isPreloading, setIsPreloading] = useState(true)
   const [preloadProgress, setPreloadProgress] = useState(0)
   const [isMobileViewport, setIsMobileViewport] = useState(false)
@@ -946,20 +1190,13 @@ function App() {
                 </p>
               </div>
 
-              <div className="mt-12 grid items-start gap-5 lg:grid-cols-3">
-                {RECIPE_MOMENTS.map((recipe) => (
-                  <RecipeFlipCard
-                    key={recipe.title}
-                    recipe={recipe}
-                    isFlipped={activeRecipe === recipe.title}
-                    onToggle={() =>
-                      setActiveRecipe((currentRecipe) =>
-                        currentRecipe === recipe.title ? null : recipe.title,
-                      )
-                    }
-                  />
-                ))}
-              </div>
+              <RecipeCarousel
+                recipes={RECIPE_MOMENTS}
+                activeRecipe={activeRecipe}
+                setActiveRecipe={setActiveRecipe}
+                activeRecipeIndex={activeRecipeIndex}
+                setActiveRecipeIndex={setActiveRecipeIndex}
+              />
             </div>
           </section>
 
