@@ -656,7 +656,7 @@ function RecipeCarousel({
     <div className="mt-12">
       <div className="flex items-center justify-between gap-4">
         <p className="text-xs font-medium uppercase tracking-[0.24em] text-white/44">
-          Arraste para explorar ou use as setas
+          Arraste no celular ou use as setas no desktop
         </p>
         <div className="hidden items-center gap-2 md:flex">
           <button
@@ -684,7 +684,7 @@ function RecipeCarousel({
 
       <div
         ref={trackRef}
-        className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[calc(50%-42vw)] pb-6 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-[calc(50%-16rem)] lg:px-[calc(50%-18rem)]"
+        className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-6 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] touch-pan-x [&::-webkit-scrollbar]:hidden md:overflow-x-hidden md:px-[8vw] lg:px-[10vw]"
       >
         {recipes.map((recipe, index) => {
           const distance = index - activeRecipeIndex
@@ -707,7 +707,7 @@ function RecipeCarousel({
               }
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               style={{ transformOrigin: distance < 0 ? 'right center' : 'left center' }}
-              className="w-[84vw] max-w-[28rem] shrink-0 snap-center md:w-[30rem]"
+              className="w-[84vw] max-w-[28rem] shrink-0 snap-center md:w-[26rem] lg:w-[28rem]"
             >
               <RecipeFlipCard
                 recipe={recipe}
