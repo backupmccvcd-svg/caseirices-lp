@@ -23,6 +23,9 @@ const sauceFrames = Object.entries(
 const sampledSauceFrames = sauceFrames.filter(
   (_, index) => index % 3 === 0 || index === sauceFrames.length - 1,
 )
+const mobileSauceFrames = sauceFrames.filter(
+  (_, index) => index === 0 || index % 8 === 0 || index === sauceFrames.length - 1,
+)
 
 const MotionAnchor = m.a
 const MotionDiv = m.div
@@ -499,6 +502,7 @@ function App() {
   const [isPreloading, setIsPreloading] = useState(true)
   const [preloadProgress, setPreloadProgress] = useState(0)
   const [isMobileViewport, setIsMobileViewport] = useState(false)
+  const [isHeroFrameReady, setIsHeroFrameReady] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined
@@ -525,10 +529,11 @@ function App() {
     }
   }, [])
 
-  const usesStaticHero = isMobileViewport || shouldReduceMotion
+  const usesStaticHero = shouldReduceMotion
   const activeSequenceFrames = useMemo(
-    () => (usesStaticHero ? [sauceFrames[0]] : sampledSauceFrames),
-    [usesStaticHero],
+    () =>
+      usesStaticHero ? [sauceFrames[0]] : isMobileViewport ? mobileSauceFrames : sampledSauceFrames,
+    [isMobileViewport, usesStaticHero],
   )
 
   const drawCurrentHeroFrame = useEffectEvent((frameIndex = activeFrame) => {
@@ -539,7 +544,8 @@ function App() {
 
   useEffect(() => {
     setActiveFrame(SEQUENCE_START_FRAME)
-  }, [usesStaticHero])
+    setIsHeroFrameReady(usesStaticHero)
+  }, [usesStaticHero, isMobileViewport])
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setNavSolid(latest > 40)
@@ -553,7 +559,7 @@ function App() {
   })
 
   useEffect(() => {
-    if (typeof window === 'undefined' || usesStaticHero) return undefined
+    if (typeof window === 'undefined' || usesStaticHero || isMobileViewport) return undefined
 
     const root = document.documentElement
     const body = document.body
@@ -566,7 +572,7 @@ function App() {
       root.style.overflow = previousRootOverflow
       body.style.overflow = previousBodyOverflow
     }
-  }, [usesStaticHero])
+  }, [isMobileViewport, usesStaticHero])
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined
@@ -575,6 +581,7 @@ function App() {
       preloadedFrameImagesRef.current = []
       setPreloadProgress(100)
       setIsPreloading(false)
+      setIsHeroFrameReady(true)
       document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
       return undefined
@@ -608,6 +615,13 @@ function App() {
           }
 
           frameImages[index] = image
+          if (index === 0 && !cancelled) {
+            preloadedFrameImagesRef.current[0] = image
+            window.requestAnimationFrame(() => {
+              drawImageCover(heroCanvasRef.current, image)
+              setIsHeroFrameReady(true)
+            })
+          }
           loadedAssets += 1
           updateProgress()
           resolve()
@@ -657,6 +671,7 @@ function App() {
       if (cancelled) return
       preloadedFrameImagesRef.current = frameImages
       drawImageCover(heroCanvasRef.current, frameImages[SEQUENCE_START_FRAME] ?? frameImages[0])
+      setIsHeroFrameReady(true)
       setPreloadProgress(100)
       window.requestAnimationFrame(() => {
         setIsPreloading(false)
@@ -714,7 +729,7 @@ function App() {
   return (
     <LazyMotion features={domAnimation}>
       <div className="relative min-h-screen overflow-x-clip bg-[#1A1A1A] text-[#f8e7d4] antialiased">
-        {!usesStaticHero && isPreloading ? (
+        {!usesStaticHero && !isMobileViewport && isPreloading ? (
           <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgba(214,40,40,0.18),transparent_24%),linear-gradient(180deg,#120d0d_0%,#1A1A1A_100%)] px-6">
             <div className="w-full max-w-md rounded-[28px] border border-white/10 bg-[rgba(18,10,10,0.54)] p-8 text-center shadow-[0_30px_80px_rgba(0,0,0,0.28)] backdrop-blur-2xl">
               <img
@@ -781,13 +796,13 @@ function App() {
                 className="absolute left-1/2 top-1/2 h-[72vh] w-[72vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,164,94,0.24)_0%,rgba(214,40,40,0.18)_30%,transparent_68%)] blur-3xl"
               />
 
-              {usesStaticHero ? (
+              {usesStaticHero || !isHeroFrameReady ? (
                 <MotionDiv
                   style={{ scale: sauceScale, y: sauceY, opacity: sauceOpacity }}
                   className="pointer-events-none absolute inset-0 z-10 overflow-hidden"
                 >
                   <img
-                    src={sauceFrames[0]}
+                    src={activeSequenceFrames[0] ?? sauceFrames[0]}
                     alt=""
                     aria-hidden="true"
                     decoding="async"
