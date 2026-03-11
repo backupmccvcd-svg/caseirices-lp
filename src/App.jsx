@@ -495,7 +495,7 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
       type="button"
       onClick={onToggle}
       className={`group block w-full text-left [perspective:2200px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4a261] focus-visible:ring-offset-2 focus-visible:ring-offset-[#120d0d] ${
-        isFlipped ? 'h-[54rem] lg:h-[52rem]' : 'h-[34rem] lg:h-[35rem]'
+        isFlipped ? 'h-[54rem] lg:h-[58rem]' : 'h-[34rem] lg:h-[35rem]'
       }`}
     >
       <MotionDiv
