@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react'
 import {
   LazyMotion,
   domAnimation,
@@ -26,7 +26,6 @@ const sampledSauceFrames = sauceFrames.filter(
 
 const MotionAnchor = m.a
 const MotionDiv = m.div
-const MotionImage = m.img
 const SEQUENCE_START_FRAME = 0
 
 const BUY_LINK =
@@ -215,6 +214,48 @@ const CRITICAL_IMAGE_SOURCES = [
   '/assets/products/real/sugo-350.jpg',
   '/assets/products/real/linha-completa.jpg',
 ]
+
+function drawImageCover(canvas, image) {
+  if (!canvas || !image) return
+
+  const context = canvas.getContext('2d')
+  if (!context) return
+
+  const { clientWidth, clientHeight } = canvas
+  if (!clientWidth || !clientHeight) return
+
+  const pixelRatio = window.devicePixelRatio || 1
+  const targetWidth = Math.round(clientWidth * pixelRatio)
+  const targetHeight = Math.round(clientHeight * pixelRatio)
+
+  if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+    canvas.width = targetWidth
+    canvas.height = targetHeight
+  }
+
+  context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+  context.clearRect(0, 0, clientWidth, clientHeight)
+
+  const imageRatio = image.naturalWidth / image.naturalHeight
+  const canvasRatio = clientWidth / clientHeight
+
+  let drawWidth = clientWidth
+  let drawHeight = clientHeight
+  let offsetX = 0
+  let offsetY = 0
+
+  if (imageRatio > canvasRatio) {
+    drawHeight = clientHeight
+    drawWidth = drawHeight * imageRatio
+    offsetX = (clientWidth - drawWidth) / 2
+  } else {
+    drawWidth = clientWidth
+    drawHeight = drawWidth / imageRatio
+    offsetY = (clientHeight - drawHeight) / 2
+  }
+
+  context.drawImage(image, offsetX, offsetY, drawWidth, drawHeight)
+}
 
 function isExternalLink(href) {
   return /^https?:\/\//.test(href)
@@ -438,6 +479,8 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
 
 function App() {
   const scrollytellingRef = useRef(null)
+  const heroCanvasRef = useRef(null)
+  const preloadedFrameImagesRef = useRef([])
   const shouldReduceMotion = useReducedMotion()
   const { scrollY } = useScroll()
   const { scrollYProgress } = useScroll({
@@ -475,6 +518,16 @@ function App() {
     [usesStaticHero],
   )
 
+  const drawCurrentHeroFrame = useEffectEvent((frameIndex = activeFrame) => {
+    const frameImage = preloadedFrameImagesRef.current[frameIndex]
+    if (!frameImage) return
+    drawImageCover(heroCanvasRef.current, frameImage)
+  })
+
+  useEffect(() => {
+    setActiveFrame(SEQUENCE_START_FRAME)
+  }, [usesStaticHero])
+
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setNavSolid(latest > 40)
   })
@@ -506,6 +559,7 @@ function App() {
     if (typeof window === 'undefined') return undefined
 
     if (usesStaticHero) {
+      preloadedFrameImagesRef.current = []
       setPreloadProgress(100)
       setIsPreloading(false)
       document.documentElement.style.overflow = ''
@@ -516,8 +570,8 @@ function App() {
     if (activeSequenceFrames.length === 0) return undefined
 
     let cancelled = false
-    const assetSources = [...new Set([...activeSequenceFrames, ...CRITICAL_IMAGE_SOURCES])]
-    const totalAssets = assetSources.length
+    const frameImages = new Array(activeSequenceFrames.length)
+    const totalAssets = activeSequenceFrames.length + CRITICAL_IMAGE_SOURCES.length
     let loadedAssets = 0
 
     const updateProgress = () => {
@@ -526,7 +580,36 @@ function App() {
       setPreloadProgress(nextProgress)
     }
 
-    const preloadImage = (source) =>
+    const preloadFrame = (source, index) =>
+      new Promise((resolve) => {
+        const image = new window.Image()
+        image.decoding = 'async'
+
+        const finalize = async () => {
+          try {
+            if (typeof image.decode === 'function') {
+              await image.decode()
+            }
+          } catch {
+            // Ignore decode failures and rely on the browser cache once requested.
+          }
+
+          frameImages[index] = image
+          loadedAssets += 1
+          updateProgress()
+          resolve()
+        }
+
+        image.onload = finalize
+        image.onerror = finalize
+        image.src = source
+
+        if (image.complete) {
+          finalize()
+        }
+      })
+
+    const preloadSupportImage = (source) =>
       new Promise((resolve) => {
         const image = new window.Image()
         image.decoding = 'async'
@@ -554,8 +637,13 @@ function App() {
         }
       })
 
-    Promise.all(assetSources.map(preloadImage)).then(() => {
+    Promise.all([
+      ...activeSequenceFrames.map((source, index) => preloadFrame(source, index)),
+      ...CRITICAL_IMAGE_SOURCES.map(preloadSupportImage),
+    ]).then(() => {
       if (cancelled) return
+      preloadedFrameImagesRef.current = frameImages
+      drawImageCover(heroCanvasRef.current, frameImages[SEQUENCE_START_FRAME] ?? frameImages[0])
       setPreloadProgress(100)
       window.requestAnimationFrame(() => {
         setIsPreloading(false)
@@ -569,7 +657,37 @@ function App() {
     }
   }, [activeSequenceFrames, usesStaticHero])
 
-  const frameSource = activeSequenceFrames[activeFrame] ?? activeSequenceFrames[0] ?? '/assets/products/real/sugo-350.jpg'
+  useEffect(() => {
+    if (usesStaticHero) return undefined
+
+    let frameRequest = 0
+    frameRequest = window.requestAnimationFrame(() => {
+      drawCurrentHeroFrame()
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameRequest)
+    }
+  }, [activeFrame, usesStaticHero])
+
+  useEffect(() => {
+    if (usesStaticHero) return undefined
+
+    let resizeRequest = 0
+    const handleResize = () => {
+      window.cancelAnimationFrame(resizeRequest)
+      resizeRequest = window.requestAnimationFrame(() => {
+        drawCurrentHeroFrame()
+      })
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      window.cancelAnimationFrame(resizeRequest)
+    }
+  }, [activeFrame, usesStaticHero])
+
   const sauceScale = useTransform(scrollYProgress, [0, 0.18, 0.56, 1], [1.02, 1.1, 1.18, 1.26])
   const sauceY = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0, 12, -6, -18])
   const sauceRotate = useTransform(scrollYProgress, [0, 0.55, 1], [0, 0, 0.5])
@@ -664,12 +782,7 @@ function App() {
                   />
                 </MotionDiv>
               ) : (
-                <MotionImage
-                  src={frameSource}
-                  alt=""
-                  aria-hidden="true"
-                  decoding="async"
-                  fetchPriority="high"
+                <MotionDiv
                   style={{
                     scale: sauceScale,
                     y: sauceY,
@@ -677,8 +790,14 @@ function App() {
                     opacity: sauceOpacity,
                     filter: sauceFilter,
                   }}
-                  className="pointer-events-none absolute inset-0 z-10 h-full w-full select-none object-cover object-center drop-shadow-[0_50px_90px_rgba(0,0,0,0.45)]"
-                />
+                  className="pointer-events-none absolute inset-0 z-10 overflow-hidden drop-shadow-[0_50px_90px_rgba(0,0,0,0.45)] will-change-transform"
+                >
+                  <canvas
+                    ref={heroCanvasRef}
+                    aria-hidden="true"
+                    className="h-full w-full"
+                  />
+                </MotionDiv>
               )}
 
               <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.10),transparent_14%),radial-gradient(circle_at_56%_50%,rgba(255,214,172,0.18),transparent_20%),radial-gradient(circle_at_34%_72%,rgba(255,255,255,0.04),transparent_22%)] mix-blend-screen" />
