@@ -333,7 +333,9 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
     <button
       type="button"
       onClick={onToggle}
-      className="group block h-[34rem] w-full text-left [perspective:2200px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4a261] focus-visible:ring-offset-2 focus-visible:ring-offset-[#120d0d]"
+      className={`group block w-full text-left [perspective:2200px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4a261] focus-visible:ring-offset-2 focus-visible:ring-offset-[#120d0d] ${
+        isFlipped ? 'h-[42rem] lg:h-[44rem]' : 'h-[34rem] lg:h-[35rem]'
+      }`}
     >
       <MotionDiv
         animate={shouldReduceMotion ? { rotateY: 0 } : { rotateY: isFlipped ? 180 : 0 }}
@@ -362,12 +364,12 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
           </div>
         </div>
 
-        <div className="absolute inset-0 rounded-[30px] border border-[#f4a261]/18 bg-[radial-gradient(circle_at_top,rgba(244,162,97,0.12),transparent_26%),linear-gradient(180deg,#241614_0%,#120d0d_100%)] p-6 text-[#fff1e2] shadow-[0_30px_80px_rgba(0,0,0,0.28)] [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-7">
+        <div className="absolute inset-0 rounded-[30px] border border-[#f4a261]/18 bg-[radial-gradient(circle_at_top,rgba(244,162,97,0.12),transparent_26%),linear-gradient(180deg,#241614_0%,#120d0d_100%)] p-5 text-[#fff1e2] shadow-[0_30px_80px_rgba(0,0,0,0.28)] [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-6">
           <div className="flex h-full flex-col">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Receita Caseirices</p>
-                <h3 className="mt-3 font-display text-4xl leading-none text-[#fff6eb]">{recipe.title}</h3>
+                <h3 className="mt-3 font-display text-3xl leading-none text-[#fff6eb] sm:text-[2.15rem]">{recipe.title}</h3>
               </div>
               <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/66">
                 virar
@@ -383,10 +385,10 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
               <span className="rounded-full border border-white/10 bg-white/6 px-3 py-2">{recipe.serves}</span>
             </div>
 
-            <div className="mt-6 grid flex-1 gap-5 overflow-hidden lg:grid-cols-[0.92fr_1.08fr]">
-              <div className="rounded-[24px] border border-white/8 bg-white/5 p-5">
+            <div className="mt-5 grid flex-1 gap-4 overflow-hidden lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="min-h-0 rounded-[24px] border border-white/8 bg-white/5 p-4 sm:p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Ingredientes</p>
-                <div className="mt-4 space-y-3">
+                <div className="mt-4 max-h-[14rem] space-y-3 overflow-y-auto pr-2">
                   {recipe.ingredients.map((ingredient) => (
                     <p key={ingredient} className="border-t border-white/8 pt-3 text-sm leading-relaxed text-white/78">
                       {ingredient}
@@ -395,9 +397,9 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
                 </div>
               </div>
 
-              <div className="rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(214,40,40,0.16),rgba(18,13,13,0.18))] p-5">
+              <div className="min-h-0 rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(214,40,40,0.16),rgba(18,13,13,0.18))] p-4 sm:p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f4a261]">Modo de preparo</p>
-                <div className="mt-4 space-y-4">
+                <div className="mt-4 max-h-[18rem] space-y-4 overflow-y-auto pr-2">
                   {recipe.steps.map((step, index) => (
                     <div key={step} className="flex gap-3 border-t border-white/8 pt-4">
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#D62828] text-xs font-bold text-white">
