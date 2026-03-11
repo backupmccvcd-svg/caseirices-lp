@@ -149,6 +149,7 @@ const RECIPE_MOMENTS = [
     title: 'Pasta do domingo',
     text: 'Tagliarini cremoso, tomate fresco e manjericão para uma mesa de domingo com cara de trattoria.',
     image: '/assets/recipes/pasta-domingo.jpg',
+    imagePosition: '58% 42%',
     sauce: 'Sugo Basilico Caseirices',
     time: '35 min',
     serves: '2 porções',
@@ -167,6 +168,7 @@ const RECIPE_MOMENTS = [
     title: 'Bruschetta quente',
     text: 'Pão tostado, tomate, queijo e ervas em uma entrada quente com personalidade imediata.',
     image: '/assets/recipes/bruschetta-quente.jpg',
+    imagePosition: '48% 72%',
     sauce: 'Molho Sugo Caseirices',
     time: '20 min',
     serves: '6 unidades',
@@ -185,6 +187,7 @@ const RECIPE_MOMENTS = [
     title: 'Mesa compartilhada',
     text: 'Um prato central para dividir, com legumes, carne dourada e molho servindo como amarra da experiência.',
     image: '/assets/recipes/mesa-compartilhada.jpg',
+    imagePosition: '50% 78%',
     sauce: 'Assado Caseirices',
     time: '45 min',
     serves: '4 porções',
@@ -408,6 +411,7 @@ function RecipeFlipCard({ recipe, isFlipped, onToggle }) {
               alt={recipe.title}
               loading="lazy"
               decoding="async"
+              style={{ objectPosition: recipe.imagePosition ?? 'center center' }}
               className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
             />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,7,7,0.08)_0%,rgba(12,7,7,0.18)_28%,rgba(12,7,7,0.82)_100%)]" />
